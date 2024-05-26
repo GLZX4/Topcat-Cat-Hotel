@@ -1,0 +1,73 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <link href="~/css/Public/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    
+    <span class="body--introText">Welcome To The Topcat Cat Hotel</span>
+
+    <span class="body--introDescription">Luxury accomodation for your Feline Friends</span>
+
+    <div class="body--titleImageContainer">IMG</div>
+
+    <button class="TopcatBtn services">Our Services</button>
+
+    <div class="pawPrints top"></div>
+
+    <div class="body--aboutUs--container">
+        <div class="aboutUs--Section">
+            <span class="body--aboutUs--Title">About Us</span>
+            <i class="aboutUsIcon"></i>
+        </div>
+        <div class="aboutUs--TextContainer">
+            <span>
+                e luxury holiday accommodation for your cats. Located at Jack Lane Farm, our facilities are designed to ensure a comfortable, safe, and enjoyable stay.
+                <br />
+                At Topcat we provid
+                <br/>
+                Each room is individually heated or air-conditioned and includes its own outdoor play area.
+            </span>
+        </div>
+    </div>
+
+    <div class="body--imageSlideshow--container">
+        <i class="leftIcon"></i>
+        <i class="rightIcon"></i>
+    </div>
+
+    <div class="body--ourServices--container">
+        <div class="ourServices--Section">
+            <span class="body--ourServices--Title">Our Services</span>
+            <i class="ourServicesIcon"></i>
+        </div>
+        <div class="listContainer">
+            <ul>
+                <li>Comfortable rooms</li>
+                <li>Nutritious meals</li>
+                <li>Personalized care</li>
+                <li>Medical care</li>
+                <li>Entertainment & Comfort</li>
+                <li>Collection and drop off locally</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="pawPrints bottom"></div>
+    <a asp-page="/Public/Contact">
+        <button class="TopcatBtn getInTouch">Get In Touch</button>
+    </a>
+
+    <div class="seperator"></div>
+</body>
+
+<footer>
+
+</footer>

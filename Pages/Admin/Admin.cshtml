@@ -1,0 +1,61 @@
+﻿@page
+@model Topcat_Cat_Hotel.Pages.Admin.AdminModel
+@{
+    ViewData["HideNavButtons"] = true;
+}
+<head>
+    <link href="~/css/Admin/Admin.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Admin/registraionAccess.js"></script>
+</head>
+
+<body>
+    <div class="body--signIn--title">Please Sign-In</div>
+
+    <div class="body--signIn--container">
+        <span class="body--signIn--ContainerTitle">Sign In</span>
+        <form id="loginForm" method="post" asp-page-handler="Login">
+            <div class="body--signIn--inputContainer">
+                <label asp-for="LoginInfo.Username"></label>
+                <input type="text" asp-for="LoginInfo.Username"/>
+            </div>
+            <div class="body--signIn--inputContainer">
+                <label asp-for="LoginInfo.Password"></label>
+                <input type="password" asp-for="LoginInfo.Password"/>
+            </div>
+
+            <span class="body--signIn--errorMsg">Example Error Msg</span>
+            <button type="submit" class="body--signIn--submitBtn">Login</button>
+        </form>
+    </div>
+
+
+    <div class="body--register--container">
+        <span class="body--signIn--ContainerTitle">Register</span>
+        <form id="registerForm" method="post" asp-page-handler="Register">
+            <div class="body--signIn--inputContainer">
+                <label asp-for="RegisterInfo.Username"></label>
+                <input type="text" asp-for="RegisterInfo.Username"/>
+            </div>
+            <div class="body--signIn--inputContainer">
+                <label asp-for="RegisterInfo.Password"></label>
+                <input type="password" asp-for="RegisterInfo.Password"/>
+            </div>
+            <div class="body--signIn--inputContainer">
+                <label asp-for="RegisterInfo.ConfirmPassword"></label>
+                <input type="password" asp-for="RegisterInfo.ConfirmPassword"/>
+            </div>
+            <div class="body--signIn--inputContainer">
+                <label asp-for="RegisterInfo.Role"></label>
+                <select asp-for="RegisterInfo.Role">
+                    <option value="">Select A Role...</option>
+                    <option value="admin">Admin</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
+
+            <span class="body--signIn--errorMsg">Example Error Msg</span>
+            <button type="submit" class="body--signIn--submitBtn">Register</button>
+        </form>
+    </div>
+</body>

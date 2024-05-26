@@ -1,0 +1,120 @@
+﻿body {
+}
+
+.body--signIn--title {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    font-size: 1.8em;
+}
+
+.body--signIn--container {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+}
+
+.body--signIn--ContainerTitle {
+    top: 10px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #747264;
+    margin-bottom: 30px;
+}
+
+#loginForm,
+#registerForm {
+    width: 90%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.body--signIn--inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.body--signIn--inputContainer input {
+    height: 40px;
+    background-color: #E0CCBE;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.body--signIn--inputContainer label {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.body--signIn--inputContainer select {
+    width: 50%;
+    background-color: #E0CCBE;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.body--signIn--errorMsg {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: #FF5858;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+.body--signIn--submitBtn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 150px;
+    height: 40px;
+    background-color: #747264;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.body--signIn--submitBtn:hover {
+    background-color: #393831;
+}
+
+.body--register--container {
+    display: none !important;
+    position: absolute;
+    top: 680px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+}
+
+.body--register--container.active {
+    display: flex !important;
+}

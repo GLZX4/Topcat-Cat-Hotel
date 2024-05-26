@@ -1,0 +1,365 @@
+﻿@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.body--introSection--container {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.body--introTitle {
+    font-size: 24px;
+    white-space: nowrap;
+    transition: all 0.3s ease-in-out;
+}
+
+.body--introDivider {
+    width: 30px;
+    height: 2px;
+    background-color: #000000;
+    margin: 0 10px;
+}
+
+.iconContainer {
+    width: 40px;
+    height: 30px;
+    background-color: #EEEDEB;
+    border-radius: 20px;
+}
+
+.weatherIcon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.body--generalInfo--container {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.roomsOccupied--container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.roomsOccupied--count {
+    background-color: #747264; /* Adjust background color as needed */
+    color: #FFFFFF; /* Adjust text color as needed */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.roomsOccupied--count .occupied,
+.roomsOccupied--count .divider,
+.roomsOccupied--count .total {
+    font-size: 24px;
+}
+
+.roomsOccupied--count .divider {
+    margin: 0 5px;
+}
+
+.roomsOccupied--text {
+    font-size: 26px;
+    color: #000000;
+}
+
+.catDue--container {
+    display: flex;
+    flex-direction: row;
+    background-color: #E0CCBE;
+    margin-top: 10px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.catDue--container.expanded {
+    max-height: 500px !important; /* Adjust as needed */
+    flex-direction: column;
+}
+
+.numberContainer {
+    background-color: #747264;
+    padding: 10px;
+    color: #FFFFFF;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numberContainer span {
+    font-size: 24px;
+}
+
+.catDue--text {
+    margin-left: 10px;
+    font-size: 18px;
+    width: 70%;
+}
+
+.catDue--container.expanded .catDue--text {
+    text-align: center;
+}
+
+.dropdownIcon {
+    position: absolute;
+    right: 20px;
+    background-image: url(../../images/dropDownIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.catDue--container.expanded .dropdownIcon {
+    transform: rotate(180deg);
+}
+
+.catList {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-height: 150px;
+    margin: 10px 0;
+    overflow-y: auto;
+}
+
+.catList li {
+    background-color: #EEEDEB;
+    border-radius: 20px;
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.catList li span {
+    font-size: 18px;
+}
+
+.moreRoomsBtn {
+    display: none;
+    position: relative;
+    right: 100px;
+    top: 0px;
+    background-color: #747264;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.catDue--container.expanded .moreRoomsBtn {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s;
+}
+
+.moreCatInfoIcon {
+    position: relative;
+    background-image: url(../../images/moreCatInfoIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.body--buttons--container {
+    position: absolute;
+    top: 460px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #E0CCBE;
+    border: 8px solid #EEEDEB;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.catDue--container.expanded ~ .body--buttons--container {
+    top: 620px;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonGroup a {
+    background-color: #747264;
+    text-decoration: none;
+    color: #000000;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+}
+
+.buttonGroup span {
+    font-size: 14px;
+    text-align: center;
+}
+
+.iconPosition {
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+}
+
+.registerIcon {
+    background-image: url(../../images/RegisterCatIcon.svg);
+    width: 35px;
+    height: 35px;
+}
+
+.editCatIcon {
+    background-image: url(../../images/editCatIcon.svg);
+}
+
+.CalenderIcon {
+    background-image: url(../../images/calenderIcon.svg);
+    height: 35px;
+    width: 32px;
+}
+
+.InvoicesIcon {
+    background-image: url(../../images/invoicesIcon.svg);
+    height: 32px;
+    width: 35px;
+}
+
+.body--income--container {
+    position: absolute;
+    top: 580px;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.catDue--container.expanded ~ .body--income--container {
+    top: 720px;
+}
+
+
+.incomeGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.MoneySection {
+    background-color: #747264;
+    padding: 10px;
+    font-size: 30px;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.MoneySectionLabel {
+    font-size: 24px;
+    color: #000000;
+    margin-left: 10px;
+}
+
+@media(max-width: 400px) {
+
+    .body--introTitle {
+        font-size: 18px;
+    }
+
+    .roomsOccupied--text {
+        font-size: 24px;
+    }
+
+    .catDue--text {
+        width: 50%;
+    }
+
+    .body--buttons--container {
+        top: 460px;
+    }
+
+    .buttonGroup span {
+        width: 80%;
+    }
+
+    .body--income--container {
+        top: 620px;
+    }
+}
+
+@media(max-width: 360px) {
+
+    .catDue--text {
+        width: 60%;
+    }
+}

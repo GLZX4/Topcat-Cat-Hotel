@@ -1,0 +1,179 @@
+﻿@page
+@model Topcat_Cat_Hotel.Pages.Admin.indexAdminModel
+@{
+    ViewData["HideNavButtons"] = true;
+
+    var weatherIcon = "";
+
+    switch (Model.weatherCondition)
+    {
+        case "clear":
+            weatherIcon = "sunIcon.svg";
+            break;
+        case "Clouds":
+            weatherIcon = "cloudyIcon.svg";
+            break;
+        case "rain":
+            weatherIcon = "rainIcon.svg";
+            break;
+        case "snow":
+            weatherIcon = "snowIcon.svg";
+            break;
+        default: 
+            weatherIcon = "sunIcon.svg";
+            break;
+    }
+}
+
+<head>
+    <link href="~/css/Admin/adminIndex.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Admin/catDueExpansion.js"></script>
+</head>
+
+
+<body>
+    @if (Model.sessionData != null)
+    {
+        <div class="body--introSection--container">
+            <span class="body--introTitle">@(Model.morning ? "Good Morning Dianne" : "Good Afternoon Dianne")</span>
+            <div class="body--introDivider"></div>
+            <div class="iconContainer">
+                <img src="~/images/@weatherIcon" class="weatherIcon">
+            </div>
+        </div>
+
+        <div class="body--generalInfo--container">
+            <div class="roomsOccupied--container">
+                <div class="roomsOccupied--count">
+                    <span class="occupied">@Model.occupied</span>
+                    <span class="divider">/</span>
+                    <span class="total">10</span>
+                </div>
+                <span class="roomsOccupied--text">Rooms Occupied</span>
+            </div>
+
+            <div class="catDue--container">
+                <div class="numberContainer">
+                    <span>@Model.catsDueIn</span>
+                </div>
+                <span class="catDue--text">Cats are Due In Today</span>
+                <i class="dropdownIcon"></i>
+                <ul class="catList">
+                    @if (Model.catsDueInList != null)
+                    {
+                        @foreach (var cat in Model.catsDueInList)
+                        {
+                            <li>
+                                <span>@cat.name is Due at: </span>
+                                <i class="moreCatInfoIcon"></i>
+                            </li>
+
+                        }
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                    } else
+                    {
+                        <li>No Cats Are Due In Today</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>                    }
+                </ul>
+                <a asp-page="/Admin/RoomList">
+                    <button class="moreRoomsBtn"> More Room Info</button>
+                </a>
+            </div>
+
+            <div class="catDue--container">
+                <div class="numberContainer">
+                    <span>@Model.catsDueOut</span>
+                </div>
+                <span class="catDue--text">Cats are Due To Leave Today</span>
+                <i class="dropdownIcon"></i>
+                <ul class="catList">
+                    @if (Model.catsDueInList != null)
+                    {
+                        @foreach (var cat in Model.catsDueOutList)
+                        {
+                            <li>
+                                <span>@cat.name is Due at: </span>
+                                <i class="moreCatInfoIcon"></i>
+                            </li>
+
+                        }
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                    }
+                    else
+                    {
+                        <li>No Cats Are Due Out Today</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                        <li>Test</li>
+                    }
+                </ul>
+                <a asp-page="/Admin/RoomList">
+                    <button class="moreRoomsBtn"> More Room Info</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="body--buttons--container">
+
+            <div class="buttonGroup">
+                <a asp-page="/Public/RegisterCat">
+                    <i class="iconPosition registerIcon"></i>
+                </a>
+                <span>Register Cat</span>
+            </div>
+
+            <div class="buttonGroup">
+                <a asp-page="/Admin/EditCat">
+                    <i class="iconPosition editCatIcon"></i>
+                </a>
+                <span>Edit Cat Info</span>
+            </div>
+
+
+            <div class="buttonGroup">
+                <a asp-page="/Admin/Calender">
+                    <i class="iconPosition CalenderIcon"></i>
+                </a>
+                <span>Check Calender</span>
+            </div>
+
+            <div class="buttonGroup">
+                <a asp-page="/Admin/Invoices">
+                    <i class="iconPosition InvoicesIcon"></i>
+                </a>
+                <span>Invoices</span>
+
+            </div>
+        </div>
+
+        <div class="body--income--container">
+            <div class="incomeGroup">
+                <span class="MoneySection">£@Model.CurrentWeekIncome.ToString("0.##")</span>
+                <span class="MoneySectionLabel">Income Current Week*</span>
+            </div>
+            <div class="incomeGroup">
+                <span class="MoneySection">£@Model.NetIncome.ToString("0.##")</span>
+                <span class="MoneySectionLabel">Net Income</span>
+            </div>
+        </div>
+
+    } else
+    {
+        <div class="body--noAccess-Container">
+            <span class="noAccess--Text">You do not have access to this page</span>
+            <a asp-page="/Public/Index">
+                <button class="noAccessBtn">Home</button>
+            </a>
+        </div>
+    }
+
+</body>

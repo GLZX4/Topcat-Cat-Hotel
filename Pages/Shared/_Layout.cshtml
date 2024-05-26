@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Topcat_Cat_Hotel</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Public/navButtonsStyleToggle.js" asp-append-version="true"></script>
+</head>
+<body>
+    <header>
+        <div class="TopcatLogo"></div>
+        
+        <div class="header--divider">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+        </div>
+       
+        <span class="header--TitleText">Topcat Cat Hotel</span>
+
+        @if (ViewData["HideNavButtons"] == null || !(bool)ViewData["HideNavButtons"])
+        {
+            <div class="header--navButtons--container">
+                <a asp-page="/Public/Index">
+                    <button class="navBtn" asp-page="/Public/Index">Home</button>
+                </a>
+                <a asp-page="/Public/Location">
+                    <button class="navBtn" asp-page="/Public/Location">Location</button>
+                </a>
+                <a asp-page="/Public/Pricing">
+                    <button class="navBtn" asp-page="/Public/Pricing">Pricing</button>
+                </a>
+                <a asp-page="/Public/Contact">
+                    <button class="navBtn" asp-page="/Public/Contact">Contact</button>
+                </a>
+            </div>
+        }
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

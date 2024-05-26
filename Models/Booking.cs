@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Topcat_Cat_Hotel.Models.Enums;
 
 namespace Topcat_Cat_Hotel.Models
@@ -13,7 +14,10 @@ namespace Topcat_Cat_Hotel.Models
         public required DateOnly checkOutDate { get; set; }
         public DateTime createdAt { get; set; }
 
-        [NotMapped]
+        // Navigation properties
+        public Room Room { get; set; }
+        public Cat Cat { get; set; }
+
         public BookingStatus BookingStatus
         {
             get => Enum.Parse<BookingStatus>(status);

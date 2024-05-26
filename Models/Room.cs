@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Topcat_Cat_Hotel.Models.Enums;
 
@@ -12,6 +14,10 @@ namespace Topcat_Cat_Hotel.Models
         [Required]
         public string status { get; set; }
         public DateTime createdAt { get; set; }
+
+        // Navigation property
+        public ICollection<Booking> Bookings { get; set; }
+
         [NotMapped]
         public RoomStatus RoomStatus
         {

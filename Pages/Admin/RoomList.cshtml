@@ -3,3 +3,47 @@
 @{
     ViewData["HideNavButtons"] = true;
 }
+
+<head>
+    <link href="~/css/Admin/roomList.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Admin/catDueExpansion.js"></script>
+</head>
+
+<body>
+    <span class="body--roomList--introText">Room List</span>
+    <a href="#">
+        <i class="homeIcon"></i>
+    </a>
+
+    <div class="body--roomList--container">
+        @if (Model.RoomList != null)
+        {
+            @foreach (var room in Model.RoomList)
+            {
+                <div class="roomList--roomContainer">
+                    @if (room.RoomStatus == "occupied")
+                    {
+                        <span class="roomNo">@room.RoomNumber</span>
+                        <div class="shortDetails">
+                            @foreach (var cat in room.Cats)
+                            {
+                                <span class="shortDetail--text">Cat Name: @cat.Name</span>
+                                <span class="shortDetail--text">Date Leaving: @cat.CheckOutDate.ToShortDateString()</span>
+                                <span class="shortDetail--text">Time Of Departure: @cat.CheckOutTime.ToShortTimeString()</span>
+                            }
+                        </div>
+                        <form id="signOutCatsForm" asp-page-handler="SignOutCats" method="post">
+                            <input type="hidden" name="roomId" value="@room.RoomId" />
+                            <button class="signOutBtn">Sign Cats Out Early</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="roomList--EmptyText">Room Empty</span>
+                    }
+                </div>
+            }
+        }
+    </div>
+</body>

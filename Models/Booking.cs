@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Topcat_Cat_Hotel.Models.Enums;
 
 namespace Topcat_Cat_Hotel.Models
@@ -18,6 +19,7 @@ namespace Topcat_Cat_Hotel.Models
         public Room Room { get; set; }
         public Cat Cat { get; set; }
 
+        [NotMapped]
         public BookingStatus BookingStatus
         {
             get => Enum.Parse<BookingStatus>(status);

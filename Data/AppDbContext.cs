@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Topcat_Cat_Hotel.Models;
+using Topcat_Cat_Hotel.Models.Enums;
 
 namespace Topcat_Cat_Hotel.Data
 {
@@ -24,7 +25,17 @@ namespace Topcat_Cat_Hotel.Data
             // Configure the primary key for Bookings
             modelBuilder.Entity<Booking>().HasKey(b => b.bookingId);
             modelBuilder.Entity<RegistrationCode>().HasKey(rc => rc.codeId);
-        
+
+            modelBuilder.Entity<Invoice>()
+                .Property(i => i.amount)
+                .HasColumnType("decimal(10,2)");
+
+            modelBuilder.Entity<Cat>()
+                .Property(c => c.sex)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (Gender)Enum.Parse(typeof(Gender), v)
+                );
         }
     }
 }

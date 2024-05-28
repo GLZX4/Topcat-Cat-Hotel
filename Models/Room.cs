@@ -9,14 +9,14 @@ namespace Topcat_Cat_Hotel.Models
     public class Room
     {
         public int roomId { get; set; }
+
         [Required]
         public string roomNumber { get; set; }
+
         [Required]
         public string status { get; set; }
-        public DateTime createdAt { get; set; }
 
-        // Navigation property
-        public ICollection<Booking> Bookings { get; set; }
+        public DateTime createdAt { get; set; }
 
         [NotMapped]
         public RoomStatus RoomStatus
@@ -24,5 +24,8 @@ namespace Topcat_Cat_Hotel.Models
             get => Enum.Parse<RoomStatus>(status);
             set => status = value.ToString();
         }
+
+        // Navigation property
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

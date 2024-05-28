@@ -7,6 +7,7 @@ body {
 }
 
 a {
+    -webkit-text-decoration: none;
     text-decoration: none;
 }
 
@@ -79,6 +80,10 @@ header {
 .header--navButtons--container {
     display: none; /* Hide nav buttons initially */
     transition: all 0.1s ease;
+}
+
+.header--navButtons--container a {
+    text-decoration: none;
 }
 
 .header--navButtons--container.visible {

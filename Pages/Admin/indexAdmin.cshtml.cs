@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Text.Json;
 using Topcat_Cat_Hotel.Data;
 using Topcat_Cat_Hotel.DTO;
@@ -103,7 +104,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
 
             foreach (var booking in bookings)
             {
-                var numberOfCats = await _context.Cats.CountAsync(c => c.catId == booking.catId);
+                var numberOfCats = await _context.Cats.CountAsync(c => c.catId.Equals(booking.catId));
                 var pricePerNight = _pricingService.GetPrice(numberOfCats);
                 var duration = booking.checkOutDate.DayNumber - booking.checkInDate.DayNumber;
                 CurrentWeekIncome += pricePerNight * duration;

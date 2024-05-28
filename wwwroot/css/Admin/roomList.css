@@ -1,2 +1,97 @@
 ﻿body {
 }
+
+.body--introSection--container {
+    position: absolute;
+    top: 120px;
+    width: 90%;
+    font-size: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body--introSection--container span {
+    border-bottom: 1px solid #747264;
+}
+
+.homeIcon {
+    display: block;
+    background-image: url(../../images/homeIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+
+.body--roomList--container {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #EEEDEB;
+    border: 6px solid #E0CCBE;
+    border-radius: 20px;
+    width: 90%;
+    padding: 5px;
+    gap: 20px;
+}
+
+.roomList--roomContainer {
+    width: 100%;
+    background-color: #E0CCBE;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+}
+
+.roomNo {
+    font-size: 28px;
+    background-color: #747264;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.shortDetails {
+    position: relative;
+    top: -40px;
+    margin-left: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shortDetails b {
+    margin-left: 10px;
+}
+
+#signOutCatsForm {
+    position: relative;
+}
+
+.signOutBtn {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background-color: #747264;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.roomList--EmptyText {
+    font-size: 24px;
+    margin-left: 10px;
+}

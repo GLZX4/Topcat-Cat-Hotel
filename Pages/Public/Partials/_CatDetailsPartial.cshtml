@@ -1,0 +1,38 @@
+﻿@model Topcat_Cat_Hotel.ViewModels.CatDetailsViewModel
+
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Name">Cat Name:</label>
+    <input type="text" asp-for="Name" placeholder="Cat's Name" maxlength="50" id="Cats[@Model.Index].Name" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Breed">Breed:</label>
+    <input type="text" asp-for="Breed" placeholder="Breed" maxlength="50" id="Cats[@Model.Index].Breed" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Age">Age:</label>
+    <input type="number" asp-for="Age" placeholder="Age" id="Cats[@Model.Index].Age" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Sex">Sex:</label>
+    <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Topcat_Cat_Hotel.Models.Enums.Gender>()" id="Cats[@Model.Index].Sex"></select>
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Microchipped">Microchipped:</label>
+    <input type="checkbox" asp-for="Microchipped" class="microchippedCheckbox" id="Cats[@Model.Index].Microchipped" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].MicrochipNumber">Microchip Number:</label>
+    <input type="text" asp-for="MicrochipNumber" placeholder="Microchip Number" maxlength="50" id="Cats[@Model.Index].MicrochipNumber" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].Insured">Insured:</label>
+    <input type="checkbox" asp-for="Insured" class="insuredCheckbox" id="Cats[@Model.Index].Insured" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].InsuranceCompany">Insurance Company:</label>
+    <input type="text" asp-for="InsuranceCompany" placeholder="Insurance Company" maxlength="50" id="Cats[@Model.Index].InsuranceCompany" />
+</div>
+<div class="inputGroup">
+    <label for="Cats[@Model.Index].InsurancePolicyNumber">Insurance Policy Number:</label>
+    <input type="text" asp-for="InsurancePolicyNumber" placeholder="Insurance Policy Number" maxlength="50" id="Cats[@Model.Index].InsurancePolicyNumber" />
+</div>

@@ -1,0 +1,162 @@
+﻿body {
+}
+.body--calender--introContainer {
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.body--calender--introTxt {
+    font-size: 24px;
+    border-bottom: 2px solid #747264;
+}
+
+.calenderIcon {
+    display: block;
+    margin-left: 20px;
+    background-image: url(../../images/calenderIcon2.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.homeIcon {
+    position: relative;
+    display: block;
+    right: 0;
+    background-image: url(../../images/homeIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.calendar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#month-year {
+    font-size: 18px;
+    font-weight: bold;
+}
+#prev,
+#next {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 10px;
+}
+
+.weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.weekdays div {
+    width: calc(100% / 7);
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.days div {
+    width: calc(100% / 7);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.prev-date, .next-date {
+    color: #ccc;
+}
+
+.available {
+    background-color: #C7FEB1;
+}
+
+.unavailable {
+    background-color: #f2dede;
+}
+
+.body--info--container {
+    position: absolute;
+    top: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.infoIntro {
+    font-size: 20px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #747264;
+}
+
+.colourCodeContainer {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.colourCode {
+    display: flex;
+    flex-direction: row;
+    margin: 3px;
+}
+
+.availabeColour {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #C7FEB1;
+}
+
+.unavailableColour {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #FA7F9C;
+}
+
+.colourCode label {
+    margin-left: 10px;
+}

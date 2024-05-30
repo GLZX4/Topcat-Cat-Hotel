@@ -10,13 +10,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/js/Public/registerCatNumToggler.js"></script>
     <script src="~/js/Public/tabNavigationCat.js"></script>
+    <script src="~/js/Public/customValidationRegisterCat.js"></script>
 </head>
 
 <body>
     @if (!codeValid && Model.User == null)
     {
         <div class="body--codeApproval--container">
-            <span>Please Enter Your Code:</span>
+            <span class="introTxt">Please Enter Your Registration Code:</span>
             <form asp-page-handler="codeSubmission" method="post">
                 <input type="text" asp-for="CodeInfo.Code" value="" placeholder="Your Unique Code" maxlength="6" />
                 <button class="codeSubmission">Submit</button>
@@ -28,7 +29,7 @@
     {
         <div class="body--registerCat--container">
             <span>Register Your Cat</span>
-            <form asp-page-handler="submitNumOfCats" method="post">
+            <form class="numCatsForm" asp-page-handler="submitNumOfCats" method="post">
                 <div class="inputGroup">
                     <label for="NumOfCats">Number of Cats: </label>
                     <input type="number" id="NumOfCats" asp-for="RegisterCatViewModel.NumOfCats" placeholder="#" maxlength="2" max="3" required />
@@ -39,7 +40,7 @@
 
             @if (Model.RegisterCatViewModel.Cats.Count > 0)
             {
-                <form asp-page-handler="registerCat" method="post">
+                <form class="registerCatForm" asp-page-handler="registerCat" method="post">
                     <div class="tab">
                         @for (int i = 0; i < Model.RegisterCatViewModel.NumOfCats; i++)
                         {

@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<IKeyGeneratorService, KeyGeneratorService>();
 
 // Correctly add HttpClient and the WeatherService
 builder.Services.AddHttpClient<WeatherService>();

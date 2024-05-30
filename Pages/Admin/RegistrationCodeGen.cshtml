@@ -1,5 +1,46 @@
 ﻿@page
 @model Topcat_Cat_Hotel.Pages.Admin.RegistrationCodeGenModel
+@using Topcat_Cat_Hotel.DTO;
+@using System.Text.Json;
 @{
     ViewData["HideNavButtons"] = true;
+    if (HttpContext.Session.TryGetValue("UserData", out var userDataJson))
+    {
+        Model.sessionData = JsonSerializer.Deserialize<userSessionData>(userDataJson);
+    }
 }
+
+<head>
+    <link href="~/css/Admin/codeGenerator.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="body--codeGenerator--introContainer">
+        <span class="body--codeGenerator--introTitle">Generate Customer Code</span>
+        <a asp-page="/Admin/indexAdmin">
+            <i class="homeIcon"></i>
+        </a>
+    </div>
+
+    @if (Model.sessionData != null)
+    {
+        <div class="body--codeGenerator--container">
+            <form asp-page-handler="GenerateCode" method="post">
+                <!-- Ensure this matches OnPostGenerateCodeAsync -->
+                <button type="submit" class="generateBtn">Generate Code</button>
+            </form>
+            <span class="informTxt">* This code is valid for 6 Hours only *</span>
+            <div class="codeContainer">
+                @if (!string.IsNullOrEmpty(Model.lastGeneratedCode))
+                {
+                    <span>@Model.lastGeneratedCode</span>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <span class="errorMsg">You must be logged in as Admin to use this service.</span>
+    }
+</body>

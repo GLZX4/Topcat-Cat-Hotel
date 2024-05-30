@@ -1,0 +1,72 @@
+﻿body {
+}
+
+.body--codeGenerator--introContainer {
+    position: relative;
+    top: -50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body--codeGenerator--introContainer span {
+    font-size: 22px;
+    border-bottom: 2px solid #747264;
+}
+
+.homeIcon {
+    display: block;
+    background-image: url(../../images/homeIcon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.body--codeGenerator--container {
+    position: relative;
+    top: -20px;
+    background-color: #E0CCBE;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.generateBtn {
+    border: none;
+    background-color: #747264;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.informTxt {
+    margin-top: 40px;
+}
+
+.codeContainer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #EEEDEB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.codeContainer span {
+    font-size: 52px;
+    font-weight: 600;
+}

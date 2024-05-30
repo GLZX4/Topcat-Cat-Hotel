@@ -119,3 +119,24 @@ header {
         font-size: 2em;
     }
 }
+
+@media(max-width: 360px) {
+
+    .navBtn {
+        width: 70px;
+    }
+}
+
+@media(max-width: 345px) {
+
+    .header--TitleText {
+        font-size: 28px;
+    }
+}
+
+@media(max-width: 320px) {
+
+    .header--TitleText {
+        font-size: 22px;
+    }
+}

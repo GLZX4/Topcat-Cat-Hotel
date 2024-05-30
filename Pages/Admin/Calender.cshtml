@@ -1,5 +1,74 @@
 ﻿@page
-@model Topcat_Cat_Hotel.Pages.Admin.CalenderModel
+@model Topcat_Cat_Hotel.Pages.Admin.CalendarModel
+@using System.Text.Json;
 @{
+    ViewData["Title"] = "Calendar";
     ViewData["HideNavButtons"] = true;
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/Admin/calender.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var availability = @Html.Raw(JsonSerializer.Serialize(Model.Availability));
+    </script>
+    <script src="~/js/Admin/calender.js" defer></script>
+</head>
+<body>
+    <div class="body--calender--introContainer">
+        <span class="body--calender--introTxt">Calender</span>
+        <i class="calenderIcon"></i>
+        <a asp-page="/Admin/indexAdmin">
+            <i class="homeIcon"></i>
+        </a>
+    </div>
+    @if (Model.sessionData != null)
+    {
+        <div class="calendar">
+            <div class="header">
+                <button id="prev">&lt;</button>
+                <div id="month-year"></div>
+                <button id="next">&gt;</button>
+            </div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="days" id="days"></div>
+        </div>
+
+        <div class="body--info--container">
+            <span class="infoIntro">Colour coding</span>
+            <div class="colourCodeContainer">
+                <div class="colourCode">
+                    <div class="availabeColour" name="available"></div>
+                    <label for="available">This means the date is available</label>
+                </div>
+                <div class="colourCode">
+                    <div class="unavailableColour" name="unavailable"></div>
+                    <label for="unavailable">This means the date is <b>not</b> available</label>
+                </div>
+            </div>
+        </div>
+    } else
+     {
+        <div class="body--calender--introContainer">
+            <span class="body--calender--introTxt">Please log in to view this page</span>
+            <a asp-page="/Admin/indexAdmin">
+                <i class="homeIcon"></i>
+            </a>
+        </div>
+    }
+
+</body>
+</html>

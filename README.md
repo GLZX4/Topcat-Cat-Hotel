@@ -16,7 +16,7 @@ Topcat Cat Hotel is a comprehensive web application for managing a cat hotel, in
 - Security: ASP.NET Core Identity, Data Protection
 - Others: Dependency Injection, Session Management
 
-##Usage
+#Usage
 
 ###Staff Registration
 - Enter Details to create an account

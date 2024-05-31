@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var errorMsg = $(".codeErrorMsg").text().trim();
+    if (errorMsg.length > 0) {
+        $(".codeErrorMsg").addClass("error");
+    }
     // Function to open cat details tab
     window.openCatDetails = function (evt, catName) {
         var i, tabcontent, tablinks;

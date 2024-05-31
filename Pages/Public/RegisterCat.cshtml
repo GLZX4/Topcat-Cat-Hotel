@@ -22,7 +22,12 @@
                 <input type="text" asp-for="CodeInfo.Code" value="" placeholder="Your Unique Code" maxlength="6" />
                 <button class="codeSubmission">Submit</button>
             </form>
-            <span class="codeErrorMsg">Example Error</span>
+            <span class="codeErrorMsg">
+                @if (ViewData.ModelState["CodeInfo.Code"]?.Errors.Count > 0)
+                {
+                    @ViewData.ModelState["CodeInfo.Code"].Errors[0].ErrorMessage
+                }
+            </span>
         </div>
     }
     else if (codeValid || Model.User != null && Model.User.Role.Equals("admin"))
@@ -34,7 +39,6 @@
                     <label for="NumOfCats">Number of Cats: </label>
                     <input type="number" id="NumOfCats" asp-for="RegisterCatViewModel.NumOfCats" placeholder="#" maxlength="2" max="3" required />
                 </div>
-
                 <button type="submit" class="submitBtn">Submit Number of Cats</button>
             </form>
 

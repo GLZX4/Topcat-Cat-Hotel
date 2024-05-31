@@ -43,11 +43,14 @@
     transform: translateX(-50%);
     width: 80%;
     margin-top: 10px;
+    text-align: center;
+}
+
+.codeErrorMsg.error {
     background-color: #f2dede;
     color: #a94442;
     padding: 5px;
     border-radius: 10px;
-    text-align: center;
 }
 
 .body--registerCat--container {

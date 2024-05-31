@@ -14,6 +14,8 @@ namespace Topcat_Cat_Hotel.Pages.Public
         private readonly AppDbContext _context;
         public bool CodeValid { get; set; }
         public userSessionData User { get; set; }
+
+        [BindProperty]
         public RegisterCodeViewModel CodeInfo { get; set; }
         [BindProperty]
         public RegisterCatViewModel RegisterCatViewModel { get; set; } = new RegisterCatViewModel();
@@ -42,19 +44,19 @@ namespace Topcat_Cat_Hotel.Pages.Public
 
             if (registrationCode == null)
             {
-                ModelState.AddModelError("CodeInfo.Code", "Invalid code.");
+                ModelState.AddModelError("CodeInfo.Code", "Invalid code");
                 return Page();
             }
 
             if (registrationCode.isUsed)
             {
-                ModelState.AddModelError("CodeInfo.Code", "This code has already been used.");
+                ModelState.AddModelError("CodeInfo.Code", "This code has already been used");
                 return Page();
             }
 
             if (registrationCode.expiresAt < DateTime.Now)
             {
-                ModelState.AddModelError("CodeInfo.Code", "This code has expired.");
+                ModelState.AddModelError("CodeInfo.Code", "This code has expired");
                 return Page();
             }
 

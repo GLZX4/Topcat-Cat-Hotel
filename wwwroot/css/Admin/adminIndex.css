@@ -229,6 +229,11 @@
     transition: all 0.3s ease-in-out;
 }
 
+.body--buttons--container.group2 {
+    justify-content: space-around;
+    top: 780px;
+}
+
 .catDue--container.expanded ~ .body--buttons--container {
     top: 620px;
 }
@@ -286,6 +291,18 @@
 .InvoicesIcon {
     background-image: url(../../images/invoicesIcon.svg);
     height: 32px;
+    width: 35px;
+}
+
+.codeIcon {
+    background-image: url(../../images/codeIcon.svg);
+    height: 35px;
+    width: 35px;
+}
+
+.approveIcon {
+    background-image: url(../../images/approveIcon.svg);
+    height: 35px;
     width: 35px;
 }
 

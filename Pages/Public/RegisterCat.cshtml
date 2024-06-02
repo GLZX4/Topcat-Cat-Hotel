@@ -34,6 +34,12 @@
     {
         <div class="body--registerCat--container">
             <span>Register Your Cat</span>
+            @if (Model.User != null && Model.User.Role.Equals("admin"))
+            {
+                <a asp-page="/Admin/indexAdmin">
+                    <i class="homeIcon"></i>
+                </a>
+            }
             <form class="numCatsForm" asp-page-handler="submitNumOfCats" method="post">
                 <div class="inputGroup">
                     <label for="NumOfCats">Number of Cats: </label>

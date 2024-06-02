@@ -29,11 +29,14 @@
         if (isExpanded) {
             clickedContainer.css('max-height', clickedContainer.get(0).scrollHeight + 'px');
             $('.body--buttons--container').css('top', '690px');
+            $('.body--buttons--container.group2').css('top', '1000px');
             $('.body--income--container').css('top', '800px');
         } else {
             clickedContainer.css('max-height', '80px');
             $('.body--buttons--container').css('top', '440px');
             $('.body--income--container').css('top', '560px');
+            $('.body--buttons--container.group2').css('top', '780px');
+
         }
     });
 });

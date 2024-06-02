@@ -71,6 +71,20 @@
     padding-bottom: 5px;
 }
 
+.homeIcon {
+    position: relative;
+    top: -23px;
+    right: 0px;
+    display: block;
+    background-image: url(../../images/homeIcon.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    margin-left: 225px;
+}
+
 .numCatsForm {
     margin-top: 20px;
     padding: 8px;

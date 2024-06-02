@@ -69,7 +69,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             }
             else
             {
-                ModelState.AddModelError("", "Invalid username or password.");
+                ModelState.AddModelError("Login", "Invalid username or password.");
             }
             return Page();
         }
@@ -82,13 +82,13 @@ namespace Topcat_Cat_Hotel.Pages.Admin
 
             if (potentialUsers.Contains(RegisterInfo.Username))
             {
-                ModelState.AddModelError("", "Username already exists.");
+                ModelState.AddModelError("Register", "Username already exists.");
                 return Page();
             }
 
             if (RegisterInfo.Password != RegisterInfo.ConfirmPassword)
             {
-                ModelState.AddModelError("", "Passwords do not match.");
+                ModelState.AddModelError("Register", "Passwords do not match.");
                 return Page();
             }
 

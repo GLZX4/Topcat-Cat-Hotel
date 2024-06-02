@@ -17,14 +17,19 @@
         <form id="loginForm" method="post" asp-page-handler="Login">
             <div class="body--signIn--inputContainer">
                 <label asp-for="LoginInfo.Username"></label>
-                <input type="text" asp-for="LoginInfo.Username"/>
+                <input type="text" asp-for="LoginInfo.Username" required/>
             </div>
             <div class="body--signIn--inputContainer">
                 <label asp-for="LoginInfo.Password"></label>
-                <input type="password" asp-for="LoginInfo.Password"/>
+                <input type="password" asp-for="LoginInfo.Password" required/>
             </div>
 
-            <span class="body--signIn--errorMsg">Example Error Msg</span>
+            <span class="body--signIn--errorMsg">
+                @if (ViewData.ModelState["Login"]?.Errors.Count > 0)
+                {
+                    @ViewData.ModelState["Login"].Errors[0].ErrorMessage
+                }
+            </span>
             <button type="submit" class="body--signIn--submitBtn">Login</button>
         </form>
     </div>
@@ -54,7 +59,12 @@
                 </select>
             </div>
 
-            <span class="body--signIn--errorMsg">Example Error Msg</span>
+            <span class="body--signIn--errorMsg">
+                @if (ViewData.ModelState["Register"]?.Errors.Count > 0)
+                {
+                    @ViewData.ModelState["Register"].Errors[0].ErrorMessage
+                }
+            </span>
             <button type="submit" class="body--signIn--submitBtn">Register</button>
         </form>
     </div>

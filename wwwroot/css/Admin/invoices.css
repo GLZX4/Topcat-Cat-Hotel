@@ -1,0 +1,166 @@
+﻿body {
+}
+
+.body--title--Container {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.introTxt {
+    position: relative;
+    left: 10px;
+    font-size: 28px;
+    border-bottom: 1px solid #747264;
+}
+
+.homeIcon {
+    position: relative;
+    right: 20px;
+    display: block;
+    background-image: url(../../images/homeIcon.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    margin-left: 225px;
+}
+
+
+.body--invoices--Container {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+}
+
+.invoice--container {
+    background-color: #E0CCBE;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.invoiceNum {
+    max-height: 45px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #747264;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.detailsContainer span {
+    margin: 2px 0;
+}
+
+.paymentSelection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.paymentSelection span {
+    white-space: nowrap;
+}
+
+.paymentOption {
+    background-color: #747264;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.divider {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.expandedContent {
+    position: relative;
+    left: 30px;
+    display: flex;
+}
+
+.overdueMsg {
+    color: red;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.CollectedBtn {
+    margin-bottom: 0px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+.CollectedBtn:hover {
+    background-color: #808080;
+}
+
+.sendIcon {
+    margin-left: 10px;
+    display: block;
+    background-image: url(../../images/sendIcon.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}
+
+.expandButton {
+    position: relative;
+    bottom: 50px;
+    right: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0;
+}
+
+.expandIcon {
+    display: block;
+    background-image: url(../../images/dropDownIcon.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+}

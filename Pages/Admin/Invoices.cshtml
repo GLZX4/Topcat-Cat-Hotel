@@ -3,3 +3,55 @@
 @{
     ViewData["HideNavButtons"] = true;
 }
+
+<head>
+    <link href="~/css/Admin/invoices.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Admin/paymentSelectorInvoices.js"></script>
+</head>
+
+<body>
+    <div class="body--title--Container">
+        <span class="introTxt">Invoices</span>
+        <a asp-page="/Admin/indexAdmin">
+            <i class="homeIcon"></i>
+        </a>
+    </div>
+
+    <div class="body--invoices--Container">
+        @foreach (var invoice in Model.invoices)
+        {
+            <div class="invoice--container">
+                <span class="invoiceNum">@invoice.invoiceId</span>
+                <div class="detailsContainer">
+                    <span>Cat Name: @invoice.catName</span>
+                    <span>Owner: @invoice.ownerName</span>
+                    <span id="amount">Amount: @invoice.amount.ToString("£#.##")</span>
+                    <form asp-page-handler="submitInvoice" method="post">
+                        <div class="paymentSelection">
+                            <span> Paying by: </span>
+                            <button type="button" class="paymentOption" onclick="setPaymentMethod('Cash')">Cash</button>
+                            <span class="divider">/</span>
+                            <button type="button" class="paymentOption" onclick="setPaymentMethod('Card')">Card</button>
+                        </div>
+                        <input type="hidden" name="invoiceId" value="@invoice.invoiceId" />
+                        <input type="hidden" name="paymentMethod" id="paymentMethod" value="" />
+                        <div class="expandedContent">
+                            @if (invoice.overdue)
+                            {
+                                <span class="overdueMsg">This payment is overdue!!</span>
+                            }
+                            <button type="submit" class="CollectedBtn">
+                                <span>Mark as Collected</span>
+                                <i class="sendIcon"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <button class="expandButton">
+                    <i class="expandIcon"></i>
+                </button>
+            </div>
+        }
+    </div>
+</body>

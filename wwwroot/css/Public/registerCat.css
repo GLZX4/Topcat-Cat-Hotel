@@ -71,9 +71,22 @@
     padding-bottom: 5px;
 }
 
+.introSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.introSection a {
+    position: relative;
+    top: 8px;
+    margin-left: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
 .homeIcon {
     position: relative;
-    top: -23px;
     right: 0px;
     display: block;
     background-image: url(../../images/homeIcon.svg);
@@ -82,11 +95,9 @@
     background-repeat: no-repeat;
     height: 35px;
     width: 35px;
-    margin-left: 225px;
 }
 
 .numCatsForm {
-    margin-top: 20px;
     padding: 8px;
 }
 
@@ -137,6 +148,47 @@
 
 .inputGroup input:focus {
     outline: 3px solid #747264;
+}
+
+.inputGroup select {
+    background-color: #E0CCBE;
+    border: none;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 20px;
+    transition: all 0.1s ease-in-out;
+}
+
+.inputGroup.vetConsent {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FA7F9C;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.aboutIcon {
+    display: block;
+    background-image: url(../../images/aboutIcon.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+}
+
+.inputGroup.vetConsent input {
+    margin-left: 40px;
+    width: 20px;
+    height: 20px;
+}
+
+.inputGroup.vetConsent input:checked {
+    border: 1px solid #747264;
+    background-color: #E0CCBE;
 }
 
 .submitBtn {

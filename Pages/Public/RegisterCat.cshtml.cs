@@ -18,8 +18,7 @@ namespace Topcat_Cat_Hotel.Pages.Public
         [BindProperty]
         public RegisterCodeViewModel CodeInfo { get; set; }
         [BindProperty]
-        public RegisterCatViewModel RegisterCatViewModel { get; set; } = new RegisterCatViewModel();
-
+        public RegisterCatViewModel registerCat { get; set; } = new RegisterCatViewModel();
 
         public RegisterCatModel(AppDbContext context)
         {
@@ -29,7 +28,17 @@ namespace Topcat_Cat_Hotel.Pages.Public
         public void OnGet()
         {
             LoadSessionData();
+
+            if (registerCat.Cats == null || !registerCat.Cats.Any())
+            {
+                registerCat.Cats = new List<CatDetailsViewModel>();
+                for (int i = 0; i < registerCat.NumOfCats; i++)
+                {
+                    registerCat.Cats.Add(new CatDetailsViewModel { Index = i });
+                }
+            }
         }
+
 
         public async Task<IActionResult> OnPostCodeSubmissionAsync()
         {
@@ -72,11 +81,10 @@ namespace Topcat_Cat_Hotel.Pages.Public
         {
             LoadSessionData();
 
-            // Add empty cat models to the list based on NumOfCats
-            RegisterCatViewModel.Cats = new List<CatDetailsViewModel>();
-            for (int i = 0; i < RegisterCatViewModel.NumOfCats; i++)
+            registerCat.Cats = new List<CatDetailsViewModel>();
+            for (int i = 0; i < registerCat.NumOfCats; i++)
             {
-                RegisterCatViewModel.Cats.Add(new CatDetailsViewModel { Index = i });
+                registerCat.Cats.Add(new CatDetailsViewModel { Index = i });
             }
 
             return Page();
@@ -84,54 +92,119 @@ namespace Topcat_Cat_Hotel.Pages.Public
 
         public async Task<IActionResult> OnPostRegisterCatAsync()
         {
+            LoadSessionData();
             Console.WriteLine("Registering cats...");
-            if (!ModelState.IsValid)
+            ModelState.Clear();
+
+            // Initialize Cats list if it's not already initialized
+            if (registerCat.Cats == null || !registerCat.Cats.Any())
             {
+                registerCat.Cats = new List<CatDetailsViewModel>();
+                for (int i = 0; i < registerCat.NumOfCats; i++)
+                {
+                    registerCat.Cats.Add(new CatDetailsViewModel { Index = i });
+                }
+            }
+
+            // Log the form data received
+            Console.WriteLine("Received form data:");
+            foreach (var key in Request.Form.Keys)
+            {
+                Console.WriteLine($"{key}: {Request.Form[key]}");
+            }
+
+            if (!TryUpdateModelAsync(registerCat).Result)
+            {
+                Console.WriteLine("Model binding failed. Errors:");
+                foreach (var state in ModelState)
+                {
+                    foreach (var error in state.Value.Errors)
+                    {
+                        Console.WriteLine($"Property: {state.Key}, Error: {error.ErrorMessage}");
+                    }
+                }
                 return Page();
             }
 
-            // Retrieve the stored code from the session
-            if (!HttpContext.Session.TryGetValue("RegistrationCode", out var registrationCodeJson))
+            // Log the registerCat object to see if it contains the expected data
+            string registerCatJson = JsonSerializer.Serialize(registerCat, new JsonSerializerOptions { WriteIndented = true });
+            Console.WriteLine("RegisterCat ViewModel after binding:");
+            Console.WriteLine(registerCatJson);
+
+            // Ensure Owner data is added first
+            var owner = new Owner
             {
-                ModelState.AddModelError("", "Registration code not found.");
-                return Page();
-            }
+                name = registerCat.OwnersName,
+                address = registerCat.OwnersAddress,
+                postcode = registerCat.OwnersPostcode,
+                mobile = registerCat.OwnersMobile,
+                createdAt = DateTime.Now
+            };
 
-            var registrationCode = JsonSerializer.Deserialize<string>(registrationCodeJson);
+            _context.Owners.Add(owner);
+            await _context.SaveChangesAsync(); // Save Owner to get the ownerId
 
-            var codeRecord = await _context.RegistrationCodes
-                .FirstOrDefaultAsync(c => c.registrationCode == registrationCode);
-
-            if (codeRecord == null)
+            // Create a new Registration
+            var registration = new Registration
             {
-                ModelState.AddModelError("", "Registration code is invalid.");
-                return Page();
-            }
+                OwnerId = owner.ownerId,
+                ConsentToContactVet = true, //always true because they have to agree with the checkbox
+                Status = "pending",
+                CreatedAt = DateTime.Now,
+                StartDate = registerCat.StartDate,
+                EndDate = registerCat.EndDate
+            };
 
-            // Mark the code as used
-            codeRecord.isUsed = true;
+            _context.Registrations.Add(registration);
+            await _context.SaveChangesAsync(); // Save Registration to get the registrationId
+            bool michrochippedToConvert = false;
+            bool insuredToConvert = false;
 
-            // Save the cats to the database
-            RegisterCatViewModel.Cats.ForEach(cat =>
+            
+
+            // Add Cats
+            foreach (var cat in registerCat.Cats)
             {
+                //converting whatever the hell checkbox inputs output into actual booleans, i hate it.
+                if (cat.Microchipped == "on")
+                {
+                    michrochippedToConvert = true;
+                }
+
+                if (cat.Insured == "on")
+                {
+                    insuredToConvert = true;
+                }
+
                 var catRecord = new Cat
                 {
+                    registrationId = registration.RegistrationId,
                     name = cat.Name,
                     breed = cat.Breed,
                     age = cat.Age,
                     sex = cat.Sex,
-                    microchipped = cat.Microchipped,
+                    microchipped = michrochippedToConvert,
                     microchipNumber = cat.MicrochipNumber,
-                    insured = cat.Insured,
+                    insured = insuredToConvert,
                     insuranceCompany = cat.InsuranceCompany,
                     insurancePolicyNumber = cat.InsurancePolicyNumber,
+                    generalHealthDetails = cat.GeneralHealthDetails,
+                    vetDetails = cat.VetDetails,
+                    createdAt = DateTime.Now
                 };
                 _context.Cats.Add(catRecord);
-            });
+            }
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); 
+
             LoadSessionData();
-            return RedirectToPage("/Success");
+            if (User != null && User.Role.Equals("admin")) { 
+                return RedirectToPage("/Admin/IndexAdmin");
+            }
+            else
+            {
+                return RedirectToPage("/Public/Index");
+            }
         }
 
         private void LoadSessionData()

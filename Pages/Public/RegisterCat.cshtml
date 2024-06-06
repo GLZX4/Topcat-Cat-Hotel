@@ -3,6 +3,7 @@
 @using Topcat_Cat_Hotel.Models.Enums
 @{
     bool codeValid = Model.CodeValid;
+    DateTime todayDate = DateTime.Today;
 }
 
 <head>
@@ -33,66 +34,75 @@
     else if (codeValid || Model.User != null && Model.User.Role.Equals("admin"))
     {
         <div class="body--registerCat--container">
-            <span>Register Your Cat</span>
-            @if (Model.User != null && Model.User.Role.Equals("admin"))
-            {
-                <a asp-page="/Admin/indexAdmin">
-                    <i class="homeIcon"></i>
-                </a>
-            }
+            <div class="introSection">
+                <span>Register Your Cat</span>
+                @if (Model.User != null && Model.User.Role.Equals("admin"))
+                {
+                    <a asp-page="/Admin/indexAdmin">
+                        <i class="homeIcon"></i>
+                    </a>
+                }
+            </div>
+
             <form class="numCatsForm" asp-page-handler="submitNumOfCats" method="post">
                 <div class="inputGroup">
                     <label for="NumOfCats">Number of Cats: </label>
-                    <input type="number" id="NumOfCats" asp-for="RegisterCatViewModel.NumOfCats" placeholder="#" maxlength="2" max="3" required />
+                    <input type="number" id="NumOfCats" asp-for="registerCat.NumOfCats" placeholder="#" maxlength="2" min="1" max="3" required />
                 </div>
                 <button type="submit" class="submitBtn">Submit Number of Cats</button>
             </form>
 
-            @if (Model.RegisterCatViewModel.Cats.Count > 0)
+            @if (Model.registerCat.Cats.Count > 0)
             {
                 <form class="registerCatForm" asp-page-handler="registerCat" method="post">
                     <div class="tab">
-                        @for (int i = 0; i < Model.RegisterCatViewModel.NumOfCats; i++)
+                        @for (int i = 0; i < Model.registerCat.NumOfCats; i++)
                         {
                             <button class="tablinks" data-catname="Cat@(i + 1)" onclick="openCatDetails(event, 'Cat@(i + 1)')">Cat @(i + 1)</button>
                         }
                     </div>
 
-                    @for (int i = 0; i < Model.RegisterCatViewModel.NumOfCats; i++)
+                    @for (int i = 0; i < Model.registerCat.NumOfCats; i++)
                     {
                         <div id="Cat@(i + 1)" class="tabcontent">
-                            <partial name="~/Pages/Public/Partials/_CatDetailsPartial.cshtml" model="Model.RegisterCatViewModel.Cats[i]" />
+                            <partial name="~/Pages/Public/Partials/_CatDetailsPartial.cshtml" model="Model.registerCat.Cats[i]" />
                         </div>
                     }
 
                     <div class="inputGroup">
+                        <label for="StartDate">Start Date:</label>
+                        <input type="date" asp-for="registerCat.StartDate" value="@todayDate.ToString("yyyy-MM-dd")" required />
+                    </div>
+
+                    <div class="inputGroup">
+                        <label for="EndDate">End Date:</label>
+                        <input type="date" asp-for="registerCat.EndDate" min="@todayDate.AddDays(1).ToString("yyyy-MM-dd")" value="@todayDate.AddDays(1).ToString("yyyy-MM-dd")" required />
+                    </div>
+
+                    <div class="inputGroup">
                         <label for="OwnersName">Owner's Name:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.OwnersName" placeholder="Owner's Name" required />
+                        <input type="text" asp-for="registerCat.OwnersName" placeholder="Owner's Name" required />
                     </div>
 
                     <div class="inputGroup">
                         <label for="OwnersAddress">Owner's Address:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.OwnersAddress" placeholder="Owner's Address" required />
+                        <input type="text" asp-for="registerCat.OwnersAddress" placeholder="Owner's Address" required />
                     </div>
 
                     <div class="inputGroup">
                         <label for="OwnersPostcode">Owner's Postcode:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.OwnersPostcode" placeholder="Owner's Postcode" required />
+                        <input type="text" asp-for="registerCat.OwnersPostcode" placeholder="Owner's Postcode" required />
                     </div>
 
                     <div class="inputGroup">
                         <label for="OwnersMobile">Owner's Mobile:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.OwnersMobile" placeholder="Owner's Mobile" required />
+                        <input type="number" asp-for="registerCat.OwnersMobile" placeholder="Owner's Mobile" required />
                     </div>
 
-                    <div class="inputGroup">
-                        <label for="GeneralHealthDetails">General Health Details:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.GeneralHealthDetails" placeholder="General Health Details" />
-                    </div>
-
-                    <div class="inputGroup">
-                        <label for="VetDetails">Vet Details:</label>
-                        <input type="text" asp-for="RegisterCatViewModel.VetDetails" placeholder="Vet Details" />
+                    <div class="inputGroup vetConsent">
+                        <label for="vetConsent">Veterinary conset</label>
+                        <i class="aboutIcon"></i>
+                        <input type="checkbox" name="vetConsent" required />
                     </div>
 
                     <button type="submit" class="submitBtn">Register</button>

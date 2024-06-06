@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Topcat_Cat_Hotel.Data;
 using Topcat_Cat_Hotel.DTO;
 using Topcat_Cat_Hotel.Models;
@@ -12,6 +17,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
     {
         public AppDbContext _context;
 
+        public userSessionData sessionData { get; set; }
         public List<invoiceDTO>? invoices { get; set; }
 
         [BindProperty]
@@ -20,13 +26,22 @@ namespace Topcat_Cat_Hotel.Pages.Admin
         [BindProperty]
         public PaymentMethod PaymentMethod { get; set; }
 
-
-        public InvoicesModel(AppDbContext context) {
+        public InvoicesModel(AppDbContext context)
+        {
             _context = context;
         }
 
         public async Task OnGetAsync()
         {
+            if (HttpContext.Session.TryGetValue("UserData", out var userDataJson))
+            {
+                sessionData = JsonSerializer.Deserialize<userSessionData>(userDataJson);
+            }
+            else
+            {
+                Console.WriteLine("Session data not found");
+            }
+            
             var currentDate = DateOnly.FromDateTime(DateTime.Now);
 
             invoices = await _context.Invoices
@@ -50,7 +65,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
                 .ToListAsync();
         }
 
-    public IActionResult OnPostSubmitInvoice()
+        public IActionResult OnPostSubmitInvoice()
         {
             // Handle form submission
             // Access InvoiceId and PaymentMethod properties here

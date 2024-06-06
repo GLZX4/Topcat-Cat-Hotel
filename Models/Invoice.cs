@@ -18,8 +18,9 @@ namespace Topcat_Cat_Hotel.Models
         [NotMapped]
         public PaymentMethod PaymentMethod
         {
-            get => Enum.Parse<PaymentMethod>(paymentMethod);
+            get => Enum.TryParse<PaymentMethod>(paymentMethod, out var method) ? method : PaymentMethod.cash;
             set => paymentMethod = value.ToString();
         }
     }
 }
+

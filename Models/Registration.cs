@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Topcat_Cat_Hotel.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using Topcat_Cat_Hotel.Models.Enums;
+using Topcat_Cat_Hotel.Models;
 
 public class Registration
 {
@@ -11,6 +11,8 @@ public class Registration
     public bool ConsentToContactVet { get; set; }
     public DateTime CreatedAt { get; set; }
     public string Status { get; set; }
+    public DateOnly? StartDate { get; set; }
+    public DateOnly? EndDate { get; set; }
 
     [NotMapped]
     public RegistrationStatus regStatus

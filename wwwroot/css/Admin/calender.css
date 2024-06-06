@@ -27,7 +27,7 @@
 .homeIcon {
     position: relative;
     display: block;
-    right: 0;
+    margin-left: 20px;
     background-image: url(../../images/homeIcon.svg);
     background-size: cover;
     background-position: center;

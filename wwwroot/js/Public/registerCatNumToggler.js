@@ -19,31 +19,32 @@
     // Function to toggle visibility of related input fields
     function toggleRelatedInput(checkbox, relatedInput) {
         if ($(checkbox).is(":checked")) {
-            $(relatedInput).show();
+            $(relatedInput).slideDown();
         } else {
-            $(relatedInput).hide();
+            $(relatedInput).slideUp();
         }
     }
 
     // Initially hide related input fields if the checkboxes are not checked
     $(".microchippedCheckbox").each(function () {
-        const relatedInput = $(this).closest(".catNameGroup").find(".microchipNumberInput");
-        toggleRelatedInput(this, relatedInput);
+        toggleRelatedInput(this, ".microchipNumberInput");
     });
 
     $(".insuredCheckbox").each(function () {
-        const relatedInput = $(this).closest(".catNameGroup").find(".insuranceDetailsInput");
-        toggleRelatedInput(this, relatedInput);
+        toggleRelatedInput(this, ".insuranceDetailsInput");
     });
 
     // Attach change event handlers to the checkboxes
     $(document).on("change", ".microchippedCheckbox", function () {
-        const relatedInput = $(this).closest(".catNameGroup").find(".microchipNumberInput");
-        toggleRelatedInput(this, relatedInput);
+        toggleRelatedInput(this, ".microchipNumberInput");
     });
 
     $(document).on("change", ".insuredCheckbox", function () {
-        const relatedInput = $(this).closest(".catNameGroup").find(".insuranceDetailsInput");
-        toggleRelatedInput(this, relatedInput);
+        toggleRelatedInput(this, ".insuranceDetailsInput");
+    });
+
+    $('.aboutIcon').on('click', function (event) {
+        event.preventDefault();
+        alert('By checking this box, I give my consent to for my cat to be treated by either my own Vet or the catterys vet in case of emergency or illness.');
     });
 });

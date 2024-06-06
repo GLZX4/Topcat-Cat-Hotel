@@ -9,7 +9,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
 }
 
@@ -30,7 +30,6 @@
     background-repeat: no-repeat;
     height: 35px;
     width: 35px;
-    margin-left: 225px;
 }
 
 
@@ -40,7 +39,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    padding: 3px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +47,8 @@
     background-color: #EEEDEB;
     border: 8px solid #E0CCBE;
     border-radius: 20px;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
 .invoice--container {
@@ -58,6 +59,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .invoiceNum {
@@ -88,18 +90,23 @@
     margin-bottom: 10px;
 }
 
-.paymentSelection span {
-    white-space: nowrap;
-}
-
 .paymentOption {
     background-color: #747264;
     color: white;
     border: none;
     padding: 5px 10px;
+    border: 1px solid transparent;
     border-radius: 8px;
     margin: 0 5px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+#cashButton.selected,
+#cardButton.selected {
+    background-color: #EEEDEB;
+    color: #000;
+    border: 1px solid #747264;
 }
 
 .divider {
@@ -109,9 +116,14 @@
 }
 
 .expandedContent {
+    display: none;
     position: relative;
     left: 30px;
     display: flex;
+}
+
+.expandedContent.enabled {
+    display: block;
 }
 
 .overdueMsg {
@@ -147,10 +159,8 @@
 .expandButton {
     position: relative;
     bottom: 50px;
-    right: 0px;
     background: none;
     border: none;
-    cursor: pointer;
     margin-left: auto;
     padding: 0;
 }
@@ -163,4 +173,12 @@
     background-repeat: no-repeat;
     height: 35px;
     width: 35px;
+    transition: transform 0.3s;
+}
+
+.invoice--container.enabled .expandIcon {
+    transform: rotate(180deg);
+}
+
+@media(max-width: 380px) {
 }

@@ -34,7 +34,7 @@
     @if (Model.sessionData != null)
     {
         <div class="body--introSection--container">
-            <span class="body--introTitle">@(Model.morning ? "Good Morning Dianne" : "Good Afternoon Dianne")</span>
+            <span class="body--introTitle">@(Model.morning ? "Good Morning " : "Good Afternoon ") @Model.sessionData.username</span>
             <div class="body--introDivider"></div>
             <div class="iconContainer">
                 <img src="~/images/@weatherIcon" class="weatherIcon">
@@ -66,18 +66,10 @@
                                 <span>@cat.name is Due at: </span>
                                 <i class="moreCatInfoIcon"></i>
                             </li>
-
                         }
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
                     } else
                     {
-                        <li>No Cats Are Due In Today</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>                    }
+                        <li>No Cats Are Due In Today</li>                    }
                 </ul>
                 <a asp-page="/Admin/RoomList">
                     <button class="moreRoomsBtn"> More Room Info</button>
@@ -101,17 +93,10 @@
                             </li>
 
                         }
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
                     }
                     else
                     {
                         <li>No Cats Are Due Out Today</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
                     }
                 </ul>
                 <a asp-page="/Admin/RoomList">

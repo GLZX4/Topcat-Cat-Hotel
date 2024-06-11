@@ -40,11 +40,21 @@
     height: 190px;
     width: 200px;
     background-color: #EEEDEB;
+    border: 1px solid #747264;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.body--titleImageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover ensures the image covers the container, while maintaining aspect ratio */
+    object-position: center; /* Centers the image */
+    display: block; /* Removes default inline spacing */
+    z-index: 1;
 }
 
 .TopcatBtn.services {

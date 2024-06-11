@@ -12,8 +12,8 @@ namespace Topcat_Cat_Hotel.ViewModels
         public string OwnersAddress { get; set; }
         public string OwnersPostcode { get; set; }
         public string OwnersMobile { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 
     public class CatDetailsViewModel

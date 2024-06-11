@@ -11,8 +11,8 @@ public class Registration
     public bool ConsentToContactVet { get; set; }
     public DateTime CreatedAt { get; set; }
     public string Status { get; set; }
-    public DateOnly? StartDate { get; set; }
-    public DateOnly? EndDate { get; set; }
+    public DateTime StartDate { get; set; }  // Changed from DateOnly to DateTime
+    public DateTime EndDate { get; set; }    // Changed from DateOnly to DateTime
 
     [NotMapped]
     public RegistrationStatus regStatus

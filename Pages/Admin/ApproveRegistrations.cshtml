@@ -16,8 +16,62 @@
         <i class="homeIcon"></i>
     </div>
 
-    <div class="body--approveReg--Container">
 
-    </div>
+    @if (Model.sessionData != null && Model.sessionData.Role.Equals("admin"))
+    {
+        <div class="body--approveReg--Container">
+            @if (Model.pendingRegistrations != null)
+            {
+                @foreach (var registration in Model.pendingRegistrations)
+                {
+                    <form asp-page-handler="ApproveRegistation" method="post">
+                        <div class="approveContainer">
+                            <span class="ApprovalNum">@registration.RegistrationId</span>
+                            <div class="shortDetails">
+                                @{
+                                    var catNames = registration.Cats != null ? string.Join(", ", registration.Cats.Select(c => c.name)) : "No cats registered";
+                                }
+                                <span class="shortDetails--catNames">@catNames</span>
+                                <span class="shortDetails--Owner">@registration.Owner.name</span>
+                                <span class="shortDetails--ArrivalDate">@registration.StartDate.ToString("d")</span>
+                                <span class="shortDetails--DeparetureDate">@registration.EndDate.ToString("d")</span>
+                                <div class="expandedDetails">
+                                    <div class="expandedDetails--title">
+                                        <span>Assign Room Number</span>
+                                        <i class="expandDetailsIcon"></i>
+                                    </div>
+                                    <select name="selectedRoom" required>
+                                        @foreach (var room in Model.rooms)
+                                        {
+                                            @if (room.status.Equals("available"))
+                                            {
+                                                <option value="@room.roomId">@room.roomNumber</option>
+                                            } else if (room.status.Equals("occupied "))
+                                            {
+                                                <option disabled value="@room.roomId">@room.roomNumber</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div class="approval--buttons">
+                                        <button type="submit" name="action" value="approve">
+                                            <i class="approveIcon"></i>
+                                        </button>
+                                        <button type="submit" name="action" value="reject">
+                                            <i class="rejectIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="expandIcon"></i>
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <span class="noUserMsg">Sorry you must be logged in as Admin to use this Page...</span>
+    }
 
 </body>

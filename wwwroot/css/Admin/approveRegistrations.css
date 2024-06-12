@@ -1,2 +1,127 @@
 ﻿body {
 }
+
+.body--introSection--container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.body--introSection--container span {
+    font-size: 24px;
+    border-bottom: 1px solid #747264
+}
+
+.homeIcon {
+    display: block;
+    background-image: url(../../images/homeIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.body--approveReg--Container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    background-color: #EEEDEB;
+    border: 8px solid #E0CCBE;
+    border-radius: 20px;
+    padding: 3px;
+}
+
+.approveContainer {
+    background-color: #E0CCBE;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ApprovalNum {
+    font-size: 24px;
+    background-color: #747264;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    max-height: 50px;
+}
+
+.shortDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.shortDetails span {
+    margin: 2px;
+}
+
+.expandIcon {
+    display: block;
+    background-image: url(../../images/dropDownIcon.svg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    transition: all 0.5s;
+    align-self: center;
+    cursor: pointer;
+}
+
+.expandIcon.expanded {
+    transform: rotate(180deg);
+}
+
+.expandedDetails {
+    display: none;
+    margin-top: 10px;
+}
+
+.expandedDetails.expanded {
+    display: block;
+}
+
+.approval--buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.approval--buttons button {
+    background-color: #747264;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.approveIcon {
+    display: block;
+    background-image: url(../../images/approveCatIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.rejectIcon {
+    display: block;
+    background-image: url(../../images/rejectCatIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}

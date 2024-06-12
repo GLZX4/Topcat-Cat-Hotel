@@ -29,7 +29,8 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             if (HttpContext.Session.TryGetValue("UserData", out var userDataJson))
             {
                 sessionData = JsonSerializer.Deserialize<userSessionData>(userDataJson);
-            } else
+            }
+            else
             {
                 Console.WriteLine("Session data not found");
             }
@@ -43,8 +44,17 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             rooms = await _context.Rooms.ToListAsync();
         }
 
+        public void loadSessionData()
+        {
+            if (HttpContext.Session.TryGetValue("UserData", out var userDataJson))
+            {
+                sessionData = JsonSerializer.Deserialize<userSessionData>(userDataJson);
+            }
+        }
+
         public async Task<IActionResult> OnPostApproveRegistrationAsync(int registrationId, string action, int selectedRoom)
         {
+            Console.WriteLine("Entered Approved Registration method");
             var registration = await _context.Registrations
                 .Include(r => r.Cats)
                 .FirstOrDefaultAsync(r => r.RegistrationId == registrationId);
@@ -52,6 +62,13 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             if (registration == null)
             {
                 return NotFound();
+            }
+
+            // Log the form data received
+            Console.WriteLine("Received form data:");
+            foreach (var key in Request.Form.Keys)
+            {
+                Console.WriteLine($"{key}: {Request.Form[key]}");
             }
 
             if (action == "approve")
@@ -83,9 +100,10 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             {
                 registration.Status = "declined";
             }
+            loadSessionData();
 
             await _context.SaveChangesAsync();
-            return RedirectToPage();
+            return RedirectToPage("/Admin/ApproveRegistrations");
         }
     }
 }

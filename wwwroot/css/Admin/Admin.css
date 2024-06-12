@@ -6,6 +6,7 @@
     top: 120px;
     left: 20px;
     font-size: 1.8em;
+    border-bottom: 1px solid #747264;
 }
 
 .body--signIn--container {

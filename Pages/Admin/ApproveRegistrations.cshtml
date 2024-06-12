@@ -5,15 +5,19 @@
 }
 
 <head>
-    <link href="~/css/Admin/approveRegistrations.css" rel="stylesheet"/>
+    <link href="~/css/Admin/approveRegistrations.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Admin/approvalsExpansion.js"></script>
 </head>
 
 <body>
 
     <div class="body--introSection--container">
         <span class="introTxt">Approve Registrations</span>
-        <i class="homeIcon"></i>
+        <a asp-page="/Admin/indexAdmin">
+            <i class="homeIcon"></i>
+        </a>
+
     </div>
 
 
@@ -24,17 +28,19 @@
             {
                 @foreach (var registration in Model.pendingRegistrations)
                 {
-                    <form asp-page-handler="ApproveRegistation" method="post">
+                    <form asp-page-handler="ApproveRegistration" method="post">
+                        <input type="hidden" name="registrationId" value="@registration.RegistrationId" />
                         <div class="approveContainer">
                             <span class="ApprovalNum">@registration.RegistrationId</span>
                             <div class="shortDetails">
                                 @{
                                     var catNames = registration.Cats != null ? string.Join(", ", registration.Cats.Select(c => c.name)) : "No cats registered";
                                 }
-                                <span class="shortDetails--catNames">@catNames</span>
-                                <span class="shortDetails--Owner">@registration.Owner.name</span>
-                                <span class="shortDetails--ArrivalDate">@registration.StartDate.ToString("d")</span>
-                                <span class="shortDetails--DeparetureDate">@registration.EndDate.ToString("d")</span>
+                                <span class="shortDetails--catNames">Cat Names: <b>@catNames</b> </span>
+                                <span class="shortDetails--Owner">Owner: <b>@registration.Owner.name</b></span>
+                                <span class="shortDetails--OwnerMobile">Mobile No: <b>@registration.Owner.mobile</b></span>
+                                <span class="shortDetails--ArrivalDate">Date Arrival: <b>@registration.StartDate.ToString("d")</b></span>
+                                <span class="shortDetails--DeparetureDate">Date Leaving: <b>@registration.EndDate.ToString("d")</b></span>
                                 <div class="expandedDetails">
                                     <div class="expandedDetails--title">
                                         <span>Assign Room Number</span>
@@ -45,20 +51,22 @@
                                         {
                                             @if (room.status.Equals("available"))
                                             {
-                                                <option value="@room.roomId">@room.roomNumber</option>
-                                            } else if (room.status.Equals("occupied "))
+                                                <option value="@room.roomId">Room: @room.roomNumber</option>
+                                            }
+                                            else if (room.status.Equals("occupied "))
                                             {
-                                                <option disabled value="@room.roomId">@room.roomNumber</option>
+                                                <option disabled value="@room.roomId">Room: @room.roomNumber</option>
                                             }
                                         }
                                     </select>
                                     <div class="approval--buttons">
-                                        <button type="submit" name="action" value="approve">
-                                            <i class="approveIcon"></i>
-                                        </button>
                                         <button type="submit" name="action" value="reject">
                                             <i class="rejectIcon"></i>
                                         </button>
+                                        <button type="submit" name="action" value="approve">
+                                            <i class="approveIcon"></i>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>

@@ -8,12 +8,16 @@
     }
 }
 
+.body--contentWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
 .body--introSection--container {
-    position: absolute;
-    top: 120px;
     left: 50%;
     width: 90%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -50,11 +54,6 @@
 }
 
 .body--generalInfo--container {
-    position: absolute;
-    top: 160px;
-    left: 50%;
-    width: 90%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     background-color: #EEEDEB;
@@ -97,15 +96,14 @@
 }
 
 .catDue--container {
-    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #E0CCBE;
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    max-height: 80px;
     overflow: hidden;
 }
 
@@ -113,6 +111,12 @@
     display: flex;
     max-height: 500px !important; /* Adjust as needed */
     flex-direction: column;
+}
+
+.shortDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .numberContainer {
@@ -138,16 +142,10 @@
 }
 
 .catDue--container.expanded .catDue--text {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
 }
 
 .dropdownIcon {
-    position: absolute;
-    right: 20px;
     background-image: url(../../images/dropDownIcon.svg);
     background-size: cover;
     background-position: center;
@@ -160,6 +158,11 @@
 
 .catDue--container.expanded .dropdownIcon {
     transform: rotate(180deg);
+}
+
+.catDetails--container {
+    display: flex;
+    flex-direction: column;
 }
 
 .catList {
@@ -217,11 +220,7 @@
 }
 
 .body--buttons--container {
-    position: absolute;
-    top: 460px;
-    left: 50%;
     width: 90%;
-    transform: translateX(-50%);
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -234,11 +233,6 @@
 
 .body--buttons--container.group2 {
     justify-content: space-around;
-    top: 780px;
-}
-
-.catDue--container.expanded ~ .body--buttons--container {
-    top: 620px;
 }
 
 .buttonGroup {
@@ -310,11 +304,8 @@
 }
 
 .body--income--container {
-    position: absolute;
-    top: 580px;
     left: 50%;
     width: 90%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     background-color: #EEEDEB;

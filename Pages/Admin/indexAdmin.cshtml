@@ -33,139 +33,150 @@
 <body>
     @if (Model.sessionData != null)
     {
-        <div class="body--introSection--container">
-            <span class="body--introTitle">@(Model.morning ? "Good Morning " : "Good Afternoon ") @Model.sessionData.username</span>
-            <div class="body--introDivider"></div>
-            <div class="iconContainer">
-                <img src="~/images/@weatherIcon" class="weatherIcon">
-            </div>
-        </div>
-
-        <div class="body--generalInfo--container">
-            <div class="roomsOccupied--container">
-                <div class="roomsOccupied--count">
-                    <span class="occupied">@Model.occupied</span>
-                    <span class="divider">/</span>
-                    <span class="total">10</span>
+        <div class="body--contentWrapper">
+            <div class="body--introSection--container">
+                <span class="body--introTitle">@(Model.morning ? "Good Morning " : "Good Afternoon ") @Model.sessionData.username</span>
+                <div class="body--introDivider"></div>
+                <div class="iconContainer">
+                    <img src="~/images/@weatherIcon" class="weatherIcon">
                 </div>
-                <span class="roomsOccupied--text">Rooms Occupied</span>
             </div>
 
-            <div class="catDue--container">
-                <div class="numberContainer">
-                    <span>@Model.catsDueIn</span>
+            <div class="body--generalInfo--container">
+                <div class="roomsOccupied--container">
+                    <div class="roomsOccupied--count">
+                        <span class="occupied">@Model.occupied</span>
+                        <span class="divider">/</span>
+                        <span class="total">10</span>
+                    </div>
+                    <span class="roomsOccupied--text">Rooms Occupied</span>
                 </div>
-                <span class="catDue--text">Cats are Due In Today</span>
-                <i class="dropdownIcon"></i>
-                <ul class="catList">
-                    @if (Model.catsDueInList != null)
-                    {
-                        @foreach (var cat in Model.catsDueInList)
-                        {
-                            <li>
-                                <span>@cat.name is Due at: </span>
-                                <i class="moreCatInfoIcon"></i>
-                            </li>
-                        }
-                    } else
-                    {
-                        <li>No Cats Are Due In Today</li>                    }
-                </ul>
-                <a asp-page="/Admin/RoomList">
-                    <button class="moreRoomsBtn"> More Room Info</button>
-                </a>
-            </div>
 
-            <div class="catDue--container">
-                <div class="numberContainer">
-                    <span>@Model.catsDueOut</span>
+                <div class="catDue--container">
+                    <div class="shortDetails">
+                        <div class="numberContainer">
+                            <span>@Model.catsDueIn</span>
+                        </div>
+                        <span class="catDue--text">Cats are Due In Today</span>
+                        <i class="dropdownIcon"></i>
+                    </div>
+                    <div class="catDetails--container">
+                        <ul class="catList">
+                            @if (Model.catsDueInList != null)
+                            {
+                                @foreach (var cat in Model.catsDueInList)
+                                {
+                                    <li>
+                                        <span>@cat.name is Due at: </span>
+                                        <i class="moreCatInfoIcon"></i>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li>No Cats Are Due In Today</li>
+                            }
+                        </ul>
+                        <a asp-page="/Admin/RoomList">
+                            <button class="moreRoomsBtn"> More Room Info</button>
+                        </a>
+                    </div>
                 </div>
-                <span class="catDue--text">Cats are Due To Leave Today</span>
-                <i class="dropdownIcon"></i>
-                <ul class="catList">
-                    @if (Model.catsDueInList != null)
-                    {
-                        @foreach (var cat in Model.catsDueOutList)
-                        {
-                            <li>
-                                <span>@cat.name is Due at: </span>
-                                <i class="moreCatInfoIcon"></i>
-                            </li>
 
-                        }
-                    }
-                    else
-                    {
-                        <li>No Cats Are Due Out Today</li>
-                    }
-                </ul>
-                <a asp-page="/Admin/RoomList">
-                    <button class="moreRoomsBtn"> More Room Info</button>
-                </a>
+                <div class="catDue--container">
+                    <div class="shortDetails">
+                        <div class="numberContainer">
+                            <span>@Model.catsDueOut</span>
+                        </div>
+                        <span class="catDue--text">Cats are Due To Leave Today</span>
+                        <i class="dropdownIcon"></i>
+                    </div>
+                    <div class="catDetails--container">
+                        <ul class="catList">
+                            @if (Model.catsDueInList != null)
+                            {
+                                @foreach (var cat in Model.catsDueOutList)
+                                {
+                                    <li>
+                                        <span>@cat.name is Due at: </span>
+                                        <i class="moreCatInfoIcon"></i>
+                                    </li>
+
+                                }
+                            }
+                            else
+                            {
+                                <li>No Cats Are Due Out Today</li>
+                            }
+                        </ul>
+                        <a asp-page="/Admin/RoomList">
+                            <button class="moreRoomsBtn"> More Room Info</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body--buttons--container">
+
+                <div class="buttonGroup">
+                    <a asp-page="/Public/RegisterCat">
+                        <i class="iconPosition registerIcon"></i>
+                    </a>
+                    <span>Register Cat</span>
+                </div>
+
+                <div class="buttonGroup">
+                    <a asp-page="/Admin/EditCat">
+                        <i class="iconPosition editCatIcon"></i>
+                    </a>
+                    <span>Edit Cat Info</span>
+                </div>
+
+
+                <div class="buttonGroup">
+                    <a asp-page="/Admin/Calender">
+                        <i class="iconPosition CalenderIcon"></i>
+                    </a>
+                    <span>Check Calender</span>
+                </div>
+
+                <div class="buttonGroup">
+                    <a asp-page="/Admin/Invoices">
+                        <i class="iconPosition InvoicesIcon"></i>
+                    </a>
+                    <span>Invoices</span>
+
+                </div>
+            </div>
+
+            <div class="body--income--container">
+                <div class="incomeGroup">
+                    <span class="MoneySection">£@Model.CurrentWeekIncome.ToString("0.##")</span>
+                    <span class="MoneySectionLabel">Income Current Week*</span>
+                </div>
+                <div class="incomeGroup">
+                    <span class="MoneySection">£@Model.NetIncome.ToString("0.##")</span>
+                    <span class="MoneySectionLabel">Net Income</span>
+                </div>
+            </div>
+
+            <div class="body--buttons--container group2">
+
+                <div class="buttonGroup">
+                    <a asp-page="/Admin/RegistrationCodeGen">
+                        <i class="iconPosition codeIcon"></i>
+                    </a>
+                    <span>Generate Code</span>
+                </div>
+
+                <div class="buttonGroup">
+                    <a asp-page="/Admin/ApproveRegistrations">
+                        <i class="iconPosition approveIcon"></i>
+                    </a>
+                    <span>Approve Registration</span>
+                </div>
             </div>
         </div>
-
-        <div class="body--buttons--container">
-
-            <div class="buttonGroup">
-                <a asp-page="/Public/RegisterCat">
-                    <i class="iconPosition registerIcon"></i>
-                </a>
-                <span>Register Cat</span>
-            </div>
-
-            <div class="buttonGroup">
-                <a asp-page="/Admin/EditCat">
-                    <i class="iconPosition editCatIcon"></i>
-                </a>
-                <span>Edit Cat Info</span>
-            </div>
-
-
-            <div class="buttonGroup">
-                <a asp-page="/Admin/Calender">
-                    <i class="iconPosition CalenderIcon"></i>
-                </a>
-                <span>Check Calender</span>
-            </div>
-
-            <div class="buttonGroup">
-                <a asp-page="/Admin/Invoices">
-                    <i class="iconPosition InvoicesIcon"></i>
-                </a>
-                <span>Invoices</span>
-
-            </div>
-        </div>
-
-        <div class="body--income--container">
-            <div class="incomeGroup">
-                <span class="MoneySection">£@Model.CurrentWeekIncome.ToString("0.##")</span>
-                <span class="MoneySectionLabel">Income Current Week*</span>
-            </div>
-            <div class="incomeGroup">
-                <span class="MoneySection">£@Model.NetIncome.ToString("0.##")</span>
-                <span class="MoneySectionLabel">Net Income</span>
-            </div>
-        </div>
-
-        <div class="body--buttons--container group2">
-
-            <div class="buttonGroup">
-                <a asp-page="/Admin/RegistrationCodeGen">
-                    <i class="iconPosition codeIcon"></i>
-                </a>
-                <span>Generate Code</span>
-            </div>
-
-            <div class="buttonGroup">
-                <a asp-page="/Admin/ApproveRegistrations">
-                    <i class="iconPosition approveIcon"></i>
-                </a>
-                <span>Approve Registration</span>
-            </div>
-        </div>
-
     } else
     {
         <div class="body--noAccess-Container">

@@ -9,6 +9,8 @@ using Topcat_Cat_Hotel.Models.Enums;
 using Topcat_Cat_Hotel.Models;
 using System.Threading.Tasks;
 
+using Passwordy_Authentication.Services;
+
 namespace Topcat_Cat_Hotel.Pages.Admin
 {
     public class AdminModel : PageModel

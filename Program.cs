@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Topcat_Cat_Hotel.Data;
 using Topcat_Cat_Hotel.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Passwordy_Authentication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddTransient<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IKeyGeneratorService, KeyGeneratorService>();
 
 // Correctly add HttpClient and the WeatherService

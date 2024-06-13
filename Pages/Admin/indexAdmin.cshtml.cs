@@ -31,6 +31,8 @@ namespace Topcat_Cat_Hotel.Pages.Admin
 
         public string weatherCondition { get; set; }
 
+
+
         public indexAdminModel(WeatherService weatherService, AppDbContext context, PricingService pricingService)
         {
             _weatherService = weatherService;

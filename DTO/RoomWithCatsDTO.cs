@@ -12,6 +12,7 @@ public class RoomWithCatsDTO
     {
         public int CatId { get; set; }
         public string Name { get; set; }
+        public DateOnly CheckInDate { get; set; }
         public DateOnly CheckOutDate { get; set; }
         public TimeOnly CheckOutTime { get; set; }
     }

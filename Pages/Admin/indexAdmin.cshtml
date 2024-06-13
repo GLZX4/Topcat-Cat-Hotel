@@ -67,7 +67,7 @@
                                 @foreach (var cat in Model.catsDueInList)
                                 {
                                     <li>
-                                        <span>@cat.name is Due at: </span>
+                                        <span>@cat.Name is Due at: @cat.TimeOfDay</span>
                                         <i class="moreCatInfoIcon"></i>
                                     </li>
                                 }
@@ -98,7 +98,7 @@
                                 @foreach (var cat in Model.catsDueOutList)
                                 {
                                     <li>
-                                        <span>@cat.name is Due at: </span>
+                                        <span>@cat.Name is Due at: @cat.TimeOfDay</span>
                                         <i class="moreCatInfoIcon"></i>
                                     </li>
 
@@ -151,14 +151,15 @@
 
             <div class="body--income--container">
                 <div class="incomeGroup">
-                    <span class="MoneySection">£@Model.CurrentWeekIncome.ToString("0.##")</span>
+                    <span class="MoneySection">£@Model.CurrentWeekIncome.ToString("0.00")</span>
                     <span class="MoneySectionLabel">Income Current Week*</span>
                 </div>
                 <div class="incomeGroup">
-                    <span class="MoneySection">£@Model.NetIncome.ToString("0.##")</span>
+                    <span class="MoneySection">£@Model.NetIncome.ToString("0.00")</span>
                     <span class="MoneySectionLabel">Net Income</span>
                 </div>
             </div>
+
 
             <div class="body--buttons--container group2">
 

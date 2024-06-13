@@ -2,7 +2,6 @@
 {
     public enum BookingStatus
     {
-        booked,
         checkedIn,
         checkedOut,
         cancelled

@@ -11,10 +11,17 @@
 .body--contentWrapper {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center; /* Center child elements horizontally */
     gap: 10px;
+    width: 100%; /* Ensure the wrapper uses the full width */
 }
 
+.body--contentWrapper > div {
+    width: 100%; /* Make each child element stretch to fill the available width */
+    margin: 0 auto; /* Center align within the container */
+}
+
+/* Intro Section */
 .body--introSection--container {
     left: 50%;
     width: 90%;
@@ -53,6 +60,7 @@
     height: 100%;
 }
 
+/* General Info Container */
 .body--generalInfo--container {
     display: flex;
     flex-direction: column;
@@ -71,8 +79,8 @@
 }
 
 .roomsOccupied--count {
-    background-color: #747264; /* Adjust background color as needed */
-    color: #FFFFFF; /* Adjust text color as needed */
+    background-color: #747264;
+    color: #FFFFFF;
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -95,6 +103,7 @@
     color: #000000;
 }
 
+/* Cat Due Container */
 .catDue--container {
     display: flex;
     flex-direction: column;
@@ -107,11 +116,11 @@
     overflow: hidden;
 }
 
-.catDue--container.expanded {
-    display: flex;
-    max-height: 500px !important; /* Adjust as needed */
-    flex-direction: column;
-}
+    .catDue--container.expanded {
+        display: flex;
+        max-height: 500px !important;
+        flex-direction: column;
+    }
 
 .shortDetails {
     display: flex;
@@ -219,6 +228,7 @@
     cursor: pointer;
 }
 
+/* Buttons Container */
 .body--buttons--container {
     width: 90%;
     padding: 10px;
@@ -231,9 +241,9 @@
     transition: all 0.3s ease-in-out;
 }
 
-.body--buttons--container.group2 {
-    justify-content: space-around;
-}
+    .body--buttons--container.group2 {
+        justify-content: space-around;
+    }
 
 .buttonGroup {
     display: flex;
@@ -303,6 +313,7 @@
     width: 35px;
 }
 
+/* Income Container */
 .body--income--container {
     left: 50%;
     width: 90%;
@@ -318,7 +329,6 @@
 .catDue--container.expanded ~ .body--income--container {
     top: 720px;
 }
-
 
 .incomeGroup {
     display: flex;
@@ -341,8 +351,8 @@
     margin-left: 10px;
 }
 
-@media(max-width: 400px) {
-
+/* Media Queries */
+@media (max-width: 400px) {
     .body--introTitle {
         font-size: 18px;
     }
@@ -372,8 +382,7 @@
     }
 }
 
-@media(max-width: 360px) {
-
+@media (max-width: 360px) {
     .catDue--text {
         width: 60%;
     }

@@ -55,12 +55,14 @@ namespace Topcat_Cat_Hotel.Pages.Admin
         public async Task<IActionResult> OnPostApproveRegistrationAsync(int registrationId, string action, int selectedRoom)
         {
             Console.WriteLine("Entered Approved Registration method");
+
             var registration = await _context.Registrations
                 .Include(r => r.Cats)
                 .FirstOrDefaultAsync(r => r.RegistrationId == registrationId);
 
             if (registration == null)
             {
+                ModelState.AddModelError("Registration", "Registration not found");
                 return NotFound();
             }
 
@@ -75,6 +77,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             {
                 registration.Status = "approved";
 
+                // Create booking for each cat
                 foreach (var cat in registration.Cats)
                 {
                     var booking = new Booking
@@ -83,7 +86,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
                         roomId = selectedRoom,
                         checkInDate = DateOnly.FromDateTime(registration.StartDate),
                         checkOutDate = DateOnly.FromDateTime(registration.EndDate),
-                        status = BookingStatus.booked.ToString(),
+                        status = BookingStatus.checkedIn.ToString(),
                         createdAt = DateTime.Now
                     };
                     _context.Bookings.Add(booking);
@@ -95,13 +98,21 @@ namespace Topcat_Cat_Hotel.Pages.Admin
                 {
                     room.status = RoomStatus.occupied.ToString();
                 }
+                else
+                {
+                    Console.WriteLine("Room not found");
+                    ModelState.AddModelError("Room", "Room not found");
+                    return RedirectToPage("/Admin/ApproveRegistrations");
+                }
+
+                ModelState.AddModelError("Registration", "Approved Registration");
             }
             else if (action == "reject")
             {
                 registration.Status = "declined";
             }
-            loadSessionData();
 
+            loadSessionData();
             await _context.SaveChangesAsync();
             return RedirectToPage("/Admin/ApproveRegistrations");
         }

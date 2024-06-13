@@ -7,7 +7,7 @@
 <head>
     <link href="~/css/Admin/roomList.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="~/js/Admin/catDueExpansion.js"></script>
+    <script src="~/js/Admin/signOutConfirmationToggler.js"></script>
 </head>
 
 <body>
@@ -39,12 +39,20 @@
                                         }
                                 }
                             </span>
+                            <span class="shortDetail--text">Date Arrived: <b>@room.Cats.First().CheckInDate.ToShortDateString()</b></span>
                             <span class="shortDetail--text">Date Leaving: <b>@room.Cats.First().CheckOutDate.ToShortDateString()</b></span>
                             <span class="shortDetail--text">Time Of Departure: <b>@(room.Cats.First().CheckOutTime.Hour < 12 ? "AM" : "PM")</b></span>
                         </div>
                         <form id="signOutCatsForm" asp-page-handler="SignOutCats" method="post">
                             <input type="hidden" name="roomId" value="@room.RoomId" />
-                            <button class="signOutBtn">Sign Cats Out Early</button>
+                            <button type="button" class="signOutBtn">Sign Cats Out Early</button>
+                            <div class="signOut--confirmation" style="display: none;">
+                                <span>Are you sure you want to sign out the cats early?</span>
+                                <div class="buttonGroup">
+                                    <button id="accept" type="submit">Yes</button>
+                                    <button id="decline" type="button">No</button>
+                                </div>
+                            </div>
                         </form>
                     }
                     else

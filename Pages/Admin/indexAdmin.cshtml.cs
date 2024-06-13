@@ -20,9 +20,9 @@ namespace Topcat_Cat_Hotel.Pages.Admin
         public bool morning;
         public int occupied;
         public int catsDueIn;
-        public List<Cat> catsDueInList { get; set; } = new List<Cat>();
+        public List<CatDueDTO> catsDueInList { get; set; } = new List<CatDueDTO>();
         public int catsDueOut;
-        public List<Cat> catsDueOutList { get; set; } = new List<Cat>();
+        public List<CatDueDTO> catsDueOutList { get; set; } = new List<CatDueDTO>();
 
         public decimal CurrentWeekIncome;
         public decimal NetIncome;
@@ -60,7 +60,6 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             await calculateCurrentWeekIncome();
         }
 
-
         public async Task calculateOccupied()
         {
             occupied = await _context.Rooms.CountAsync(r => r.status == RoomStatus.occupied.ToString());
@@ -70,11 +69,17 @@ namespace Topcat_Cat_Hotel.Pages.Admin
         {
             var today = DateOnly.FromDateTime(DateTime.Now);
             var bookingsDueIn = await _context.Bookings
-                .Where(b => b.checkInDate == today && b.status == BookingStatus.booked.ToString())
+                .Where(b => b.checkInDate == today && b.status == BookingStatus.checkedIn.ToString())
                 .ToListAsync();
 
             var catIdsDueIn = bookingsDueIn.Select(b => b.catId).ToList();
-            catsDueInList = await _context.Cats.Where(c => catIdsDueIn.Contains(c.catId)).ToListAsync();
+            var cats = await _context.Cats.Where(c => catIdsDueIn.Contains(c.catId)).ToListAsync();
+
+            catsDueInList = cats.Select(c => new CatDueDTO
+            {
+                Name = c.name,
+                TimeOfDay = "AM" // Assuming they are all due in the AM, adjust as needed
+            }).ToList();
 
             catsDueIn = catsDueInList.Count;
         }
@@ -87,7 +92,13 @@ namespace Topcat_Cat_Hotel.Pages.Admin
                 .ToListAsync();
 
             var catIdsDueOut = bookingsDueOut.Select(b => b.catId).ToList();
-            catsDueOutList = await _context.Cats.Where(c => catIdsDueOut.Contains(c.catId)).ToListAsync();
+            var cats = await _context.Cats.Where(c => catIdsDueOut.Contains(c.catId)).ToListAsync();
+
+            catsDueOutList = cats.Select(c => new CatDueDTO
+            {
+                Name = c.name,
+                TimeOfDay = "PM" // Assuming they are all due in the PM, adjust as needed
+            }).ToList();
 
             catsDueOut = catsDueOutList.Count;
         }
@@ -97,7 +108,7 @@ namespace Topcat_Cat_Hotel.Pages.Admin
             var startOfWeek = DateOnly.FromDateTime(DateTime.Now.AddDays(-((int)DateTime.Now.DayOfWeek)));
             var endOfWeek = DateOnly.FromDateTime(DateTime.Now.AddDays(7 - (int)DateTime.Now.DayOfWeek));
             var bookings = await _context.Bookings
-                .Where(b => b.checkInDate >= startOfWeek && b.checkOutDate <= endOfWeek && (b.status == BookingStatus.booked.ToString() || b.status == BookingStatus.checkedIn.ToString()))
+                .Where(b => b.checkInDate >= startOfWeek && b.checkOutDate <= endOfWeek && (b.status == BookingStatus.checkedIn.ToString() || b.status == BookingStatus.checkedIn.ToString()))
                 .ToListAsync();
 
             CurrentWeekIncome = 0;

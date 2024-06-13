@@ -40,11 +40,12 @@ namespace Topcat_Cat_Hotel.Pages.Admin
                     RoomNumber = r.roomNumber,
                     RoomStatus = r.status,
                     Cats = r.Bookings
-                        .Where(b => (b.status == BookingStatus.checkedIn.ToString() || b.status == BookingStatus.booked.ToString()) && b.Cat != null)
+                        .Where(b => (b.status == BookingStatus.checkedIn.ToString() || b.status == BookingStatus.checkedIn.ToString()) && b.Cat != null)
                         .Select(b => new RoomWithCatsDTO.CatDTO
                         {
                             CatId = b.catId,
                             Name = b.Cat.name,
+                            CheckInDate = b.checkInDate,
                             CheckOutDate = b.checkOutDate,
                             CheckOutTime = new TimeOnly(12, 0) // Default check out time, adjust as needed
                         })
@@ -75,21 +76,46 @@ namespace Topcat_Cat_Hotel.Pages.Admin
 
         public async Task<IActionResult> OnPostSignOutCatsAsync(int roomId)
         {
+            Console.WriteLine("Entered SignOutCats method");
+            Console.WriteLine($"Room ID: {roomId}");
+
             var room = await _context.Rooms
                 .Include(r => r.Bookings)
                 .ThenInclude(b => b.Cat)
                 .FirstOrDefaultAsync(r => r.roomId == roomId);
 
-            if (room != null)
+            if (room == null)
             {
-                foreach (var booking in room.Bookings.Where(b => b.status == "checkedIn"))
-                {
-                    booking.status = "checkedOut";
-                }
-                await _context.SaveChangesAsync();
+                Console.WriteLine($"Room with ID {roomId} not found");
+                return RedirectToPage();
             }
+
+            Console.WriteLine($"Found room: {room.roomNumber}");
+            Console.WriteLine($"Bookings in the room: {room.Bookings.Count}");
+
+            bool anyCheckedIn = false;
+            room.status = RoomStatus.available.ToString();
+            foreach (var booking in room.Bookings)
+            {
+                Console.WriteLine($"Booking ID: {booking.bookingId}, Cat Name: {booking.Cat?.name}, Status: {booking.status}");
+                if (booking.status == "checkedIn")
+                {
+                    Console.WriteLine($"Signing out cat: {booking.Cat.name} (Booking ID: {booking.bookingId})");
+                    booking.status = "checkedOut";
+                    anyCheckedIn = true;
+                }
+            }
+
+            if (!anyCheckedIn)
+            {
+                Console.WriteLine("No cats were checked in for this room");
+            }
+
+            await _context.SaveChangesAsync();
+            Console.WriteLine("Database save changes complete");
 
             return RedirectToPage();
         }
+
     }
 }

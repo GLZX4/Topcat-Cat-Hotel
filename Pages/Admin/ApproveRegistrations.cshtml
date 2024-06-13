@@ -19,11 +19,15 @@
         </a>
     </div>
 
-
     @if (Model.sessionData != null && Model.sessionData.Role.Equals("admin"))
     {
         <div class="body--approveReg--Container">
-            @if (Model.pendingRegistrations != null)
+            <div class="validation-summary-errors">
+                @Html.ValidationSummary()
+                <span>Testing Message</span>
+            </div>
+
+            @if (Model.pendingRegistrations != null && Model.pendingRegistrations.Count > 0)
             {
                 @foreach (var registration in Model.pendingRegistrations)
                 {
@@ -45,27 +49,33 @@
                                         <span>Assign Room Number</span>
                                         <i class="expandDetailsIcon"></i>
                                     </div>
-                                    <select name="selectedRoom" required>
-                                        @foreach (var room in Model.rooms)
-                                        {
-                                            @if (room.status.Equals("available"))
+                                    @if (Model.rooms.Any(room => room.status.Equals("available")))
+                                    {
+                                        <select name="selectedRoom" required>
+                                            @foreach (var room in Model.rooms)
                                             {
-                                                <option value="@room.roomId">Room: @room.roomNumber</option>
+                                                if (room.status.Equals("available"))
+                                                {
+                                                    <option value="@room.roomId">Room: @room.roomNumber</option>
+                                                }
+                                                else if (room.status.Equals("occupied"))
+                                                {
+                                                    <option disabled value="@room.roomId">Room: @room.roomNumber</option>
+                                                }
                                             }
-                                            else if (room.status.Equals("occupied "))
-                                            {
-                                                <option disabled value="@room.roomId">Room: @room.roomNumber</option>
-                                            }
-                                        }
-                                    </select>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <p class="noRoomsMessage">No rooms available for the selected dates.</p>
+                                    }
                                     <div class="approval--buttons">
                                         <button type="submit" name="action" value="reject">
                                             <i class="rejectIcon"></i>
                                         </button>
-                                        <button type="submit" name="action" value="approve">
+                                        <button type="submit" name="action" value="approve" @(Model.rooms.Any(room => room.status.Equals("available")) ? "" : "disabled")>
                                             <i class="approveIcon"></i>
                                         </button>
-
                                     </div>
                                 </div>
                             </div>
@@ -74,12 +84,15 @@
                     </form>
                 }
             }
+            else
+            {
+                <span class="noRegError">There are no current registrations to be approved.</span>
+            }
         </div>
     }
     else
     {
         <span class="noUserMsg">Sorry you must be logged in as Admin to use this Page...</span>
     }
-
 
 </body>

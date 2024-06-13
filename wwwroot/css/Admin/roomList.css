@@ -91,6 +91,52 @@
     padding: 5px;
 }
 
+.signOut--confirmation {
+    display: none;
+    position: absolute;
+    top: -80px;
+    left: 0;
+    padding: 10px;
+    background-color: #EEEDEB;
+    color: #000;
+    border: 3px solid #747264;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+.signOut--confirmation span {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttonGroup button {
+    border: none;
+    background-color: #E0CCBE;
+    color: #000;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.buttonGroup button#accept {
+    border: 2px solid #195600;
+}
+
+.buttonGroup button#decline {
+    border: 2px solid #fc3939;
+}
+
 .roomList--EmptyText {
     font-size: 24px;
     margin-left: 10px;

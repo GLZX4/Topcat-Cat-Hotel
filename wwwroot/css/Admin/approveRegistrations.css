@@ -1,6 +1,13 @@
 ﻿body {
 }
 
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 .body--introSection--container {
     display: flex;
     flex-direction: row;
@@ -39,6 +46,7 @@
     background-color: #E0CCBE;
     border-radius: 5px;
     margin: 5px;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -71,8 +79,8 @@
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     transition: all 0.5s;
     align-self: center;
     cursor: pointer;
@@ -91,10 +99,20 @@
     display: block;
 }
 
+.expandedDetails select option:active {
+    background-color: #747264;
+    color: #fff;
+}
+
+.expandedDetails select option:disabled {
+    background-color: #ff0000b3;
+    color: #fff;
+}
+
 .approval--buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .approval--buttons button {
@@ -124,4 +142,22 @@
     background-repeat: no-repeat;
     width: 30px;
     height: 30px;
+}
+
+.noRegError {
+    margin: 10px;
+    font-size: 24px;
+}
+
+.validation-summary-errors {
+    display: none;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    position: relative;
+    animation: fadeOut 0.5s forwards;
+    animation-delay: 4s;
 }

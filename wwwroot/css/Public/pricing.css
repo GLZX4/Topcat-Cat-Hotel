@@ -1,0 +1,118 @@
+﻿body {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.contentWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.body--introSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.introSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.introSection .title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.introSection .description {
+    margin-top: 30px;
+    max-width: 160px;
+}
+
+.moneyIcon {
+    background-image: url(../../images/pricingIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+}
+
+.pawPrints {
+    width: 100%;
+    background-image: url(../../images/PawPrints.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 122px;
+    z-index: -1;
+}
+
+.pawPrints bottom{
+    transform: rotate(180deg);
+}
+
+.body--basePricesContainer {
+    background-color: #EEEDEB;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.basePriceTitle--container {
+    position: relative;
+    top: 0;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.basePriceTitle--container span {
+    font-size: 28px;
+    border-bottom: 1px solid #747264;
+}
+
+.basePrice--content {
+    position: relative;
+    bottom: 0;
+    height: 80%;
+    background-color: #E0CCBE;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.basePrice--content ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.basePrice--content li {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.highlighter {
+    background-color: #747264;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.poundIcon {
+    display: block;
+    background-image: url(../../images/poundIcon.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}

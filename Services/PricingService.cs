@@ -21,4 +21,9 @@
         }
         throw new ArgumentException("Invalid number of cats");
     }
+
+    public List<PricePerNight> GetPrices()
+    {
+        return _prices;
+    }
 }

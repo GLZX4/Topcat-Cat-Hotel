@@ -1,4 +1,61 @@
 ﻿@page
 @model Topcat_Cat_Hotel.Pages.Public.PricingModel
+@using Topcat_Cat_Hotel.Services
 @{
 }
+<head>
+    <title>Pricing</title>
+    <link rel="stylesheet" href="~/css/Public/pricing.css">
+</head>
+
+<body>
+    <div class="contentWrapper">
+        <div class="body--introSection">
+            <div class="introSection">
+                <span class="title">Our Costs</span>
+                <span class="description">We charge a discounted rate for shared rooms</span>
+            </div>
+            <div class="introSection">
+                <i class="moneyIcon"></i>
+            </div>
+        </div>
+
+        <div class="pawPrints"></div>
+
+        <div class="body--basePricesContainer">
+            <div class="basePriceTitle--container">
+                <span>Base Prices</span>
+                <i class="poundIcon"></i>
+            </div>
+            <div class="basePrice--content">
+                <span>Base Prices are as Follows: </span>
+                <ul>
+                    @foreach (var price in Model.prices)
+                    {
+                        <li>@price.NumberOfCats Cat / 1 Room / Per Night: <span class="highlighter">£@price.Price.ToString("0.00")</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <span class="warningCharge">* Late Collections and no shows <b>Will </b>Be charged at the full rate additonal per night</span>
+
+        <div class="body--additionalCharges--container">
+            <div class="additionalCharges--title">
+                <span>Additional Charges</span>
+                <i class="additonalChargesIcon"></i>
+            </div>
+            <div class="addtionalCharges--content">
+                <ul>
+                    <li>Excess Mess / Clean up Fee: £5</li>
+                    <li>Medication Admin Fee: £5</li>
+                    <li>Local Collection / Drop off: £10</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pawPrints bottom"></div>
+
+    </div>
+
+</body>
